@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "1eb024c2-1aaa-4bb6-9610-62bc34149c63",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -70,6 +79,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e3e046ca-1f7b-4d69-8f61-9f37a242b815",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -78,7 +98,7 @@
             "id": "67c10a74-cb8c-4e19-aa53-e6cdeef5080b",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Button selection",
                     "type": "Button",
                     "id": "ce4ad3aa-17d0-4800-b431-a2b95569eed4",
                     "expectedControlType": "Button",
@@ -90,12 +110,45 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "65b6cffc-619d-49a0-a312-c614ab99666f",
-                    "path": "",
+                    "id": "01f30324-3d72-4489-837c-89baef8eb0b5",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Button selection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4307d85d-7817-4613-8bc9-654146180d8f",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Button selection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7cb4bcb1-eef9-4ea3-af08-2e671cccd46f",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Button selection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ec716f3-27b4-449d-85cd-e443bb733b2a",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Button selection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
