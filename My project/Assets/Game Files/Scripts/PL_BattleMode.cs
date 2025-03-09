@@ -9,12 +9,13 @@ public class PL_BattleMode : MonoBehaviour
     
     private GM_BattleMode _battleMode;
 
-    void Awake()
+    private void Awake()
     {
         _playerInput = new PlayerControls();
         _rb = GetComponent<Rigidbody2D>();
         _battleMode = transform.parent.GetComponent<GM_BattleMode>();
-        //if ( _battleMode == null ) выкинуть ексепш
+        if ( _battleMode == null ) 
+            throw new System.NullReferenceException("GM_BattleMode is not found! Please check if the parent has GM_BattleMode component.");
     }
 
     private void OnEnable()
@@ -27,24 +28,12 @@ public class PL_BattleMode : MonoBehaviour
         _playerInput.Player.Disable();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         MovePlayerWithRb();
     }
 
-    void Update()
-    {
-        if (_battleMode.IsPlayerTurn == true) _playerInput.Disable();
-        else _playerInput.Enable();
-    }
-
-    void MovePlayer()
-    {
-        Vector3 movementDirection = _playerInput.Player.Movement.ReadValue<Vector2>();
-        transform.position += movementDirection * velocity;
-    }
-
-    void MovePlayerWithRb()
+    private void MovePlayerWithRb()
     {
         Vector2 movementDirection = _playerInput.Player.Movement.ReadValue<Vector2>();
         _rb.MovePosition(_rb.position + movementDirection * velocity);

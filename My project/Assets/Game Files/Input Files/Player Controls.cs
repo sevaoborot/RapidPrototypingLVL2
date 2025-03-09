@@ -121,58 +121,69 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Button selection"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""ce4ad3aa-17d0-4800-b431-a2b95569eed4"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""01f30324-3d72-4489-837c-89baef8eb0b5"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""4d277511-15da-4721-8f77-6b820fdbe88e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Button selection"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""893cfc16-4081-4c5b-bdac-d9cb0cbd0d65"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Button selection"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""4307d85d-7817-4613-8bc9-654146180d8f"",
+                    ""name"": ""down"",
+                    ""id"": ""c9b4b7d1-d1e5-4349-8254-cf9957a1503e"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Button selection"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""7cb4bcb1-eef9-4ea3-af08-2e671cccd46f"",
+                    ""name"": ""left"",
+                    ""id"": ""17ada281-44d3-4488-931f-90ca3a70f53a"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Button selection"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""6ec716f3-27b4-449d-85cd-e443bb733b2a"",
+                    ""name"": ""right"",
+                    ""id"": ""b8a879a2-35a3-4078-a81f-732a5124de07"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Button selection"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 }
             ]
         }

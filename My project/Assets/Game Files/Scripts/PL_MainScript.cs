@@ -7,7 +7,7 @@ public class PL_MainScript : MonoBehaviour
     private PlayerControls _playerInput;
     private Rigidbody2D _rb;
 
-    void Awake()
+    private void Awake()
     {
         _playerInput = new PlayerControls();
         _rb = GetComponent<Rigidbody2D>();
@@ -23,18 +23,12 @@ public class PL_MainScript : MonoBehaviour
         _playerInput.Player.Disable();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         MovePlayerWithRb();
     }
 
-    void MovePlayer()
-    {
-        Vector3 movementDirection = _playerInput.Player.Movement.ReadValue<Vector2>();
-        transform.position += movementDirection * velocity;
-    }
-
-    void MovePlayerWithRb()
+    private void MovePlayerWithRb()
     {
         Vector2 movementDirection = _playerInput.Player.Movement.ReadValue<Vector2>();
         _rb.MovePosition(_rb.position + movementDirection * velocity);
