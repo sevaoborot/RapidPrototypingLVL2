@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 48
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 8669374021061409629}
   - component: {fileID: 8207445673360914087}
   m_Layer: 5
-  m_Name: Button1
+  m_Name: Battle button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

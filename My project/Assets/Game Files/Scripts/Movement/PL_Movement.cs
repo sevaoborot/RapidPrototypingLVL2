@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class PL_MainScript : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class PL_Movement : MonoBehaviour
 {
     [SerializeField] private float velocity;
 
     private PlayerControls _playerInput;
     private Rigidbody2D _rb;
 
-    private void Awake()
+    public void InitializeMovement(PlayerControls playerInput)
     {
-        _playerInput = new PlayerControls();
+        _playerInput = playerInput;
         _rb = GetComponent<Rigidbody2D>();
+        Debug.Log("Player movement is initialized successfully!");
     }
 
     private void OnEnable()
