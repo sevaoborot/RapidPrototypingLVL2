@@ -4,20 +4,20 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class NPC_Dialouge : MonoBehaviour
 {
-    [SerializeField] private SO_Dialouges[] dialouges;
+    [SerializeField] private SO_Dialogues[] dialouges;
 
     private bool _wasTriggeredBefore = false;
 
-    public IReadOnlyList<DialougesData> GetDialogues()
+    public IReadOnlyList<DialogueElement> GetDialogues()
     {
         if (!_wasTriggeredBefore)
         {
             _wasTriggeredBefore = true;
-            return dialouges[0].DialougesData;
+            return dialouges[0].elements;
         }
         else
         {
-            return dialouges[1].DialougesData;
+            return dialouges[1].elements;
         }
     }
 }

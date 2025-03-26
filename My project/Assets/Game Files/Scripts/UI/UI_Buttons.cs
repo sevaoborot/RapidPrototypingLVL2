@@ -1,16 +1,30 @@
+using TMPro;
 using UnityEngine;
 
 public class UI_Buttons : MonoBehaviour
 {
-    private string _buttonGameObjName;
+    //private TextMeshProUGUI _buttonText;
+    //private int _buttonTextlineID;
 
-    private void Awake()
-    {
-        _buttonGameObjName = gameObject.name;
-    }
+    //public void InitializeButton()
+    //{
+    //    _buttonText = GetComponent<TextMeshProUGUI>();
+    //    _buttonTextlineID = 0;
+    //}
 
-    public void ButtonDebug()
-    {
-        //Debug.LogWarning($"{_buttonGameObjName} is pressed");
-    }
+    //public void EnableButton(string newButtonText, int newButtonTextLineID)
+    //{
+    //    _buttonText.text = newButtonText;
+    //    _buttonTextlineID = newButtonTextLineID;
+    //}
+
+    //public void DisableButton()
+    //{
+
+    //}
+
+    //public void ChooseButton()
+    //{
+
+    //}
 }

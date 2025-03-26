@@ -1,18 +1,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "My Assets/Dialouges Data")]
-public class SO_Dialouges : ScriptableObject
+[CreateAssetMenu(menuName = "My Assets/Dialogues Data")]
+public class SO_Dialogues : ScriptableObject
 {
-    [SerializeField] private DialougesData[] _dialougesData;
-
-    public IReadOnlyList<DialougesData> DialougesData => _dialougesData;
+    [SerializeReference]
+    public List<DialogueElement> elements = new List<DialogueElement>();
 }
 
 [System.Serializable]
-public struct DialougesData
+public abstract class DialogueElement { }
+
+[System.Serializable]
+public class DialogueData : DialogueElement
 {
     [Multiline(4)]
-    public string dialougeText;
-    public Sprite dialougeNPCSprite;
+    public string dialogueText;
+    public Sprite dialogueNPCSprite;
+    public int nextElementID;
 }
+
+[System.Serializable]
+public class ReplyOptions : DialogueElement
+{
+    public List<ReplyOption> options = new();
+}
+
+[System.Serializable]
+public struct ReplyOption
+{
+    public string replyText;
+    public int nextElementID;
+}
+
