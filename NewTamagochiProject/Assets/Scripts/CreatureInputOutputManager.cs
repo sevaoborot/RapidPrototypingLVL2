@@ -37,17 +37,14 @@ public class CreatureInputOutputManager : MonoBehaviour
 
     private void CreateStartCreatureNeeds()
     {
-        _needs = new CreatureNeeds(100f, 100f, 100f, 100f);
+        _needs = new CreatureNeeds(90f, 100f, 100f, 100f);
         SaveData();
     }
 
     private void SaveData()
     {
-        Debug.Log(_needs.ToString());
         string json = _needs.ToJSON();
-        Debug.Log(json);
         File.WriteAllText(_jsonPath, json);
-        Debug.Log($"Данные сохранены: {_jsonPath}");
     }
 
     private void LoadData()
@@ -56,11 +53,9 @@ public class CreatureInputOutputManager : MonoBehaviour
         {
             string json = File.ReadAllText(_jsonPath);
             _needs = new CreatureNeeds(json);
-            _needs.ToString();
         }
         else
         {
-            Debug.Log("Файл сохранения не найден, создаём новые данные.");
             CreateStartCreatureNeeds();
         }
     }
