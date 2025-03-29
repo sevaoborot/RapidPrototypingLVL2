@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InitializeGame : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private CreatureInputOutputManager _creatureIO;
+    [SerializeField] private CreatureNeedsUIManager _creatureUI;
 
-    // Update is called once per frame
-    void Update()
+    private CreatureNeeds _needs;
+
+    private void Awake()
     {
-        
+        _needs = new CreatureNeeds();
+        _creatureIO.OnInitialize(_needs);
+        _creatureUI.OnInitialize(_needs);
+        _needs.InvokeAllNeedsNethods();
     }
 }

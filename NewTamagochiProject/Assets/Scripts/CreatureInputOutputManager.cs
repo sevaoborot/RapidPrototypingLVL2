@@ -7,9 +7,10 @@ public class CreatureInputOutputManager : MonoBehaviour
 
     private string _jsonPath;
 
-    private void Start()
+    public void OnInitialize(CreatureNeeds needs)
     {
         _jsonPath = Path.Combine(Application.persistentDataPath, "petData.json");
+        _needs = needs;
 
         if (!PlayerPrefs.HasKey("FirstGameLaunch"))
         {
@@ -37,7 +38,7 @@ public class CreatureInputOutputManager : MonoBehaviour
 
     private void CreateStartCreatureNeeds()
     {
-        _needs = new CreatureNeeds(90f, 100f, 100f, 100f);
+        _needs.SetCreatureNeedsValues(90f, 100f, 100f, 100f);
         SaveData();
     }
 
@@ -52,7 +53,8 @@ public class CreatureInputOutputManager : MonoBehaviour
         if (File.Exists(_jsonPath))
         {
             string json = File.ReadAllText(_jsonPath);
-            _needs = new CreatureNeeds(json);
+            _needs.SetCreatureNeedsValues(json);
+            Debug.Log(_needs.ToString());
         }
         else
         {

@@ -1,0 +1,50 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+public abstract class CreatureNeedUIElement : MonoBehaviour
+{
+    protected CreatureNeeds _needs;
+    protected bool _isSubscribed = false;
+
+    private RectTransform _needSlider;
+    private Image _needImage;
+
+    public virtual void OnInitialize(CreatureNeeds needs)
+    {
+        _needs = needs;
+        _needSlider = GetComponent<RectTransform>();
+        _needImage = GetComponent<Image>();
+        if (_needSlider == null) Debug.LogError("RectTransform не найден на объекте!");
+    }
+
+    protected void UpdateUIElement(float needValue)
+    {
+        SetHeight(needValue);
+        SetColor(needValue);
+    }
+
+    private void SetHeight(float needValue)
+    {
+        Vector2 newSize = new Vector2(_needSlider.sizeDelta.x, needValue);
+        _needSlider.sizeDelta = newSize;
+    }
+
+    private void SetColor(float needValue)
+    {
+        switch(needValue)
+        {
+            case float value when value < 33f && value >= 0f: 
+                //цвет красный
+                break;
+            case float value when value >= 33f && value < 66f:
+                //цвет жёлтый
+                break;
+            case float value when value >= 66f && value <= 100f: 
+                //цыет зелёныйй
+                break;
+            default:
+                Debug.Log("Эксепшн со значениями этой вашей зелёненькой штучки");
+                break;
+        }
+    }
+}
