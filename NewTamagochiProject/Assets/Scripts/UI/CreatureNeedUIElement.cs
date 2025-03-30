@@ -6,14 +6,13 @@ public abstract class CreatureNeedUIElement : MonoBehaviour
     protected CreatureNeeds _needs;
     protected bool _isSubscribed = false;
 
-    private RectTransform _needSlider;
+    [SerializeField]private RectTransform _needSlider;
     private Image _needImage;
 
     public virtual void OnInitialize(CreatureNeeds needs)
     {
         _needs = needs;
-        _needSlider = GetComponent<RectTransform>();
-        _needImage = GetComponent<Image>();
+        _needImage = _needSlider.GetComponent<Image>();
         if (_needSlider == null) Debug.LogError("RectTransform не найден на объекте!");
     }
 

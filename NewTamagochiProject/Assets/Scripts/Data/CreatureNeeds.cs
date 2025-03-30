@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+[System.Serializable]
 public class CreatureNeeds 
 {
     [SerializeField] private float _health;
@@ -8,10 +9,10 @@ public class CreatureNeeds
     [SerializeField] private float _happiness;
     [SerializeField] private float _sleep;
 
-    public Action<float> OnHealthChanged;
-    public Action<float> OnHungerChanged;
-    public Action<float> OnHappinessChanged;
-    public Action<float> OnSleepChanged;
+    public event Action<float> OnHealthChanged;
+    public event Action<float> OnHungerChanged;
+    public event Action<float> OnHappinessChanged;
+    public event Action<float> OnSleepChanged;
 
     public float health
     {
@@ -67,23 +68,12 @@ public class CreatureNeeds
         this.sleep = Mathf.Clamp(sleep, 0, 100);
     }
 
-    public void SetCreatureNeedsValues(string json)
+    public void SetCreatureNeedsValues(CreatureNeeds needs)
     {
-        FromJSON(json);
-    }
-
-    public string ToJSON()
-    {
-        return JsonUtility.ToJson(this);
-    }
-
-    public void FromJSON(string json)
-    {
-        CreatureNeeds data = JsonUtility.FromJson<CreatureNeeds>(json);
-        health = Mathf.Clamp(data.health, 0, 100);
-        hunger = Mathf.Clamp(data.hunger, 0, 100);
-        happiness = Mathf.Clamp(data.happiness, 0, 100);
-        sleep = Mathf.Clamp(data.sleep, 0, 100);
+        this.health = needs.health;
+        this.hunger = needs.hunger; 
+        this.happiness= needs.happiness;
+        this.sleep = needs.sleep;
     }
 
     public void InvokeAllNeedsNethods()
