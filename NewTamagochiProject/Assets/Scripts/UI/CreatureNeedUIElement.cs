@@ -33,14 +33,14 @@ public abstract class CreatureNeedUIElement : MonoBehaviour
     {
         switch(needValue)
         {
-            case float value when value < 33f && value >= 0f: 
-                //цвет красный
+            case float value when value < 33f && value >= 0f:
+                _needImage.color = new Color(255, 0, 0, 255);
                 break;
             case float value when value >= 33f && value < 66f:
-                //цвет жёлтый
+                _needImage.color = new Color(255, 255, 0, 255);
                 break;
-            case float value when value >= 66f && value <= 100f: 
-                //цыет зелёныйй
+            case float value when value >= 66f && value <= 100f:
+                _needImage.color = new Color(0, 255, 0, 255);
                 break;
             default:
                 Debug.Log("Эксепшн со значениями этой вашей зелёненькой штучки");

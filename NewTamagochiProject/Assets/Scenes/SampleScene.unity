@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 627785237}
   - component: {fileID: 627785239}
   - component: {fileID: 627785238}
+  - component: {fileID: 627785240}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -432,6 +433,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627785236}
   m_CullTransparentMesh: 1
+--- !u!114 &627785240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627785236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0985f597c410514d8242c0e9630df4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &642101321
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +456,7 @@ GameObject:
   - component: {fileID: 642101322}
   - component: {fileID: 642101324}
   - component: {fileID: 642101323}
+  - component: {fileID: 642101325}
   m_Layer: 5
   m_Name: Happiness
   m_TagString: Untagged
@@ -507,6 +521,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642101321}
   m_CullTransparentMesh: 1
+--- !u!114 &642101325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642101321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13546aefa23b274fa74c2bfbbf6c459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &704169701
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,10 +585,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49392c9906fb5534dba9c0dae0b9f60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthUI: {fileID: 0}
-  _hungerUI: {fileID: 0}
-  _happinessUI: {fileID: 0}
-  _sleepUI: {fileID: 0}
+  _healthUI: {fileID: 627785240}
+  _hungerUI: {fileID: 1684539402}
+  _happinessUI: {fileID: 642101325}
+  _sleepUI: {fileID: 944151363}
 --- !u!1 &944151359
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +600,7 @@ GameObject:
   - component: {fileID: 944151360}
   - component: {fileID: 944151362}
   - component: {fileID: 944151361}
+  - component: {fileID: 944151363}
   m_Layer: 5
   m_Name: Sleep
   m_TagString: Untagged
@@ -638,6 +665,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944151359}
   m_CullTransparentMesh: 1
+--- !u!114 &944151363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944151359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8864db648ee8ac64590382ee28063a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1684539398
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +688,7 @@ GameObject:
   - component: {fileID: 1684539399}
   - component: {fileID: 1684539401}
   - component: {fileID: 1684539400}
+  - component: {fileID: 1684539402}
   m_Layer: 5
   m_Name: Hunger
   m_TagString: Untagged
@@ -713,6 +753,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684539398}
   m_CullTransparentMesh: 1
+--- !u!114 &1684539402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684539398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681fe239c5b2a054eb0bf4ecf23f30a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1777693524
 GameObject:
   m_ObjectHideFlags: 0
