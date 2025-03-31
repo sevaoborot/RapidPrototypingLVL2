@@ -20,14 +20,4 @@ public class CreatureNeedsUIManager : MonoBehaviour
 
         Debug.Log("UI отображение потребностей проинициализированно!");
     }
-
-    private void UpdateNeedUI()
-    {
-
-    }
-
-    void Update()
-    {
-        
-    }
 }

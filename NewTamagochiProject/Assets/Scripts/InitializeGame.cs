@@ -3,6 +3,7 @@
 public class InitializeGame : MonoBehaviour
 {
     [SerializeField] private CreatureNeedsUIManager _creatureUI;
+    [SerializeField] private CreatureNeedsChange _creatureNeedsChange;
 
     private CreatureNeeds _needs;
     private InputOutputManager _inputManager;
@@ -18,6 +19,7 @@ public class InitializeGame : MonoBehaviour
 
         _creatureUI.OnInitialize(_needs);
         _needs.InvokeAllNeedsNethods();
+        _creatureNeedsChange.OnInitialize(_needs);
     }
 
     private void OnApplicationPause(bool pause)
