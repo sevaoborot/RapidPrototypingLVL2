@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class InputOutputManager
 {
-    private CreatureNeeds _needs;
-
     private string _jsonPath;
 
     public InputOutputManager()
@@ -14,6 +12,8 @@ public class InputOutputManager
 
     public void SaveData(CreatureNeeds needs)
     {
+        PlayerPrefs.SetString("LastSaveTime", System.DateTime.Now.ToString());
+        PlayerPrefs.Save();
         GameData gameData = new GameData(needs);
         string json = JsonUtility.ToJson(gameData, true);
         File.WriteAllText(_jsonPath, json);

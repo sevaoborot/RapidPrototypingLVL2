@@ -17,7 +17,5 @@ public class CreatureNeedsUIManager : MonoBehaviour
         _hungerUI.OnInitialize(_needs);
         _happinessUI.OnInitialize(_needs);
         _sleepUI.OnInitialize(_needs);
-
-        Debug.Log("UI отображение потребностей проинициализированно!");
     }
 }

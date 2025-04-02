@@ -57,7 +57,7 @@ public class CreatureNeeds
 
     public CreatureNeeds()
     {
-        Debug.Log("Нужды проинициализированы");
+        //Debug.Log("Нужды проинициализированы");
     }
 
     public void SetCreatureNeedsValues(float health, float hunger, float happiness, float sleep)
