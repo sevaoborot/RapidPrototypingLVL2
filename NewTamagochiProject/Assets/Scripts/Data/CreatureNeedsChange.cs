@@ -11,6 +11,11 @@ public class CreatureNeedsChange : MonoBehaviour
 
     private CreatureNeeds _needs;
 
+    private Coroutine _healthCoroutine;
+    private Coroutine _hungerCoroutine;
+    private Coroutine _happinessCoroutine;
+    private Coroutine _sleepCoroutine;
+
     public void OnInitialize(CreatureNeeds needs)
     {
         _needs = needs;
@@ -24,22 +29,22 @@ public class CreatureNeedsChange : MonoBehaviour
         _needs.happiness -= InactiveTime.Seconds / _happinessUpdateInterval;
         _needs.sleep -= InactiveTime.Seconds / _sleepUpdateInterval;
 
-        StartCoroutine(NeedChange(
+        _healthCoroutine = StartCoroutine(NeedChange(
             () => _needs.health,
             value => _needs.health = value,
             _healthUpdateInterval
             ));
-        StartCoroutine(NeedChange(
+        _hungerCoroutine = StartCoroutine(NeedChange(
             () => _needs.hunger,
             value => _needs.hunger = value,
             _hungerUpdateInterval
             ));
-        StartCoroutine(NeedChange(
+        _happinessCoroutine = StartCoroutine(NeedChange(
             () => _needs.happiness,
             value => _needs.happiness = value,
             _happinessUpdateInterval
             ));
-        StartCoroutine(NeedChange(
+        _sleepCoroutine = StartCoroutine(NeedChange(
             () => _needs.sleep,
             value => _needs.sleep = value,
             _sleepUpdateInterval

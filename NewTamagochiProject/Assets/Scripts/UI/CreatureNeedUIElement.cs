@@ -24,7 +24,13 @@ public abstract class CreatureNeedUIElement : MonoBehaviour
 
     private void SetHeight(float needValue)
     {
-        Vector2 newSize = new Vector2(_needSlider.sizeDelta.x, needValue);
+        Vector2 newSize;
+        if (needValue <= 5f)
+        {
+            newSize = new Vector2(_needSlider.sizeDelta.x, 5f);
+            return;
+        }
+        newSize = new Vector2(_needSlider.sizeDelta.x, needValue);
         _needSlider.sizeDelta = newSize;
     }
 

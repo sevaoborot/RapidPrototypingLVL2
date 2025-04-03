@@ -20,7 +20,7 @@ public class CreatureNeeds
         set
         {
             if (Mathf.Approximately(_health, value)) return; 
-            _health = value;
+            _health = Mathf.Clamp(value, 0f, 100f);
             OnHealthChanged?.Invoke(_health);
         }
     }
@@ -30,7 +30,7 @@ public class CreatureNeeds
         set
         {
             if (Mathf.Approximately(_hunger, value)) return;
-            _hunger = value;
+            _hunger = Mathf.Clamp(value, 0f, 100f);
             OnHungerChanged?.Invoke(hunger);
         }
     }
@@ -40,7 +40,7 @@ public class CreatureNeeds
         set
         {
             if (Mathf.Approximately(_happiness, value)) return;
-            _happiness = value;
+            _happiness = Mathf.Clamp(value, 0f, 100f);
             OnHappinessChanged?.Invoke(_happiness);
         }
     }
@@ -50,7 +50,7 @@ public class CreatureNeeds
         set
         {
             if (Mathf.Approximately(_sleep, value)) return;
-            _sleep = value;
+            _sleep = Mathf.Clamp(value, 0f, 100f);
             OnSleepChanged?.Invoke(_sleep);
         }
     }
