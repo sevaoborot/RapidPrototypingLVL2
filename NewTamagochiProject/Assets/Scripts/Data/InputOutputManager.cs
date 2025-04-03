@@ -10,11 +10,11 @@ public class InputOutputManager
         _jsonPath = Path.Combine(Application.persistentDataPath, "petData.json");
     }
 
-    public void SaveData(CreatureNeeds needs)
+    public void SaveData(CreatureNeeds needs, bool isSleeping)
     {
         PlayerPrefs.SetString("LastSaveTime", System.DateTime.Now.ToString());
         PlayerPrefs.Save();
-        GameData gameData = new GameData(needs);
+        GameData gameData = new GameData(needs, isSleeping);
         string json = JsonUtility.ToJson(gameData, true);
         File.WriteAllText(_jsonPath, json);
         Debug.Log("Сохранено в " + _jsonPath);

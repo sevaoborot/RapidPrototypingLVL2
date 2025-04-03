@@ -8,6 +8,8 @@ public class InitializeGame : MonoBehaviour
     private CreatureNeeds _needs;
     private InputOutputManager _inputManager;
 
+    private bool _isSleeping = false;
+
     private void Awake()
     {
         _needs = new CreatureNeeds();
@@ -20,13 +22,18 @@ public class InitializeGame : MonoBehaviour
             PlayerPrefs.SetInt("FirstGameRun", 1);
             PlayerPrefs.SetString("LastSaveTime", System.DateTime.Now.ToString());
             _needs.SetCreatureNeedsValues(100f, 100f, 100f, 100f);
+            _isSleeping = false;
             PlayerPrefs.Save();
         }
         else
         {
             Debug.Log("Уже не первый раз заходите, не так ли?");
             loadedData = _inputManager.LoadData();
-            if (loadedData != null) _needs.SetCreatureNeedsValues(loadedData.creatureNeeds);
+            if (loadedData != null)
+            {
+                _needs.SetCreatureNeedsValues(loadedData.creatureNeeds);
+                _isSleeping = loadedData.isSleeping;
+            }
             else _needs.SetCreatureNeedsValues(100f, 100f, 100f, 100f);
         }     
         
@@ -34,16 +41,20 @@ public class InitializeGame : MonoBehaviour
 
         _creatureUI.OnInitialize(_needs);
         _needs.InvokeAllNeedsNethods();
-        _creatureNeedsChange.OnInitialize(_needs);
+        _creatureNeedsChange.OnInitialize(_needs, _creatureUI, _isSleeping);
+
+        _creatureUI.OnSleepButtonPressed += SetSleepStatus;
     }
 
     private void OnApplicationPause(bool pause)
     {
-        if (pause) _inputManager.SaveData(_needs);
+        if (pause) _inputManager.SaveData(_needs, _isSleeping);
     }
 
     private void OnApplicationQuit()
     {
-        _inputManager.SaveData(_needs);
+        _inputManager.SaveData(_needs, _isSleeping);
     }
+
+    private void SetSleepStatus(bool isSleeping) => _isSleeping = isSleeping;
 }
