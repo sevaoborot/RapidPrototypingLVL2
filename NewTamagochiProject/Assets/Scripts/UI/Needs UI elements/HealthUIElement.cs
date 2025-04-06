@@ -15,6 +15,7 @@ public class HealthUIElement : CreatureNeedUIElement
         if (_needs != null && !_isSubscribed)
         {
             _needs.OnHealthChanged += UpdateUIElement;
+            _isSubscribed = true;
         }
     }
 
@@ -23,6 +24,7 @@ public class HealthUIElement : CreatureNeedUIElement
         if (_needs != null && _isSubscribed)
         {
             _needs.OnHealthChanged -= UpdateUIElement;
+            _isSubscribed = false;
         }
     }
 }

@@ -1,0 +1,54 @@
+{
+    "name": "TamagochiInputActions",
+    "maps": [
+        {
+            "name": "PlayerInputs",
+            "id": "d341b505-83ba-4570-a3bb-a8ac64eb12de",
+            "actions": [
+                {
+                    "name": "PointerPosition",
+                    "type": "Value",
+                    "id": "863755b3-b3ad-4d2d-9aaa-05bb09564340",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PointerClick",
+                    "type": "Button",
+                    "id": "d9cf4f8a-8678-4571-bf7f-3d573e95ff91",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "96226e3d-89e9-498a-ba7d-d9fce837c026",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PointerPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e2675fd-761a-4d85-85be-a9e2344f3d38",
+                    "path": "<Pointer>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PointerClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

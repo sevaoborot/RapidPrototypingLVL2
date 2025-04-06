@@ -5,6 +5,7 @@ public class InitializeGame : MonoBehaviour
     [SerializeField] private CreatureNeedsUIManager _creatureUI;
     [SerializeField] private CreatureNeedsChange _creatureNeedsChange;
 
+    private TamagochiInputActions _inputActions;
     private CreatureNeeds _needs;
     private InputOutputManager _inputManager;
 
@@ -12,6 +13,7 @@ public class InitializeGame : MonoBehaviour
 
     private void Awake()
     {
+        _inputActions = new TamagochiInputActions();
         _needs = new CreatureNeeds();
         _inputManager = new InputOutputManager();
         GameData loadedData = new GameData(_needs);

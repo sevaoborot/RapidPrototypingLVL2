@@ -11,6 +11,7 @@ public class CreatureNeedsUIManager : MonoBehaviour
 
     [Header("Debug (should be removed/replaced later)")]
     [SerializeField] private TextMeshProUGUI _sleepButtonText;
+    [SerializeField] private ItemHandler[] _itemHandlers;
 
     private CreatureNeeds _needs;
 
@@ -26,6 +27,10 @@ public class CreatureNeedsUIManager : MonoBehaviour
         _hungerUI.OnInitialize(_needs);
         _happinessUI.OnInitialize(_needs);
         _sleepUI.OnInitialize(_needs);
+
+        foreach (var handler in _itemHandlers) {
+            handler.OnInitialize();
+        }
     }
 
     public void SleepButton()
@@ -41,5 +46,5 @@ public class CreatureNeedsUIManager : MonoBehaviour
             _wasPressed = false;
             OnSleepButtonPressed?.Invoke(false);
         }
-    }
+    } 
 }

@@ -15,6 +15,7 @@ public class SleepUIElement : CreatureNeedUIElement
         if (_needs != null && !_isSubscribed)
         {
             _needs.OnSleepChanged += UpdateUIElement;
+            _isSubscribed = true;
         }
     }
 
@@ -23,6 +24,7 @@ public class SleepUIElement : CreatureNeedUIElement
         if (_needs != null && _isSubscribed)
         {
             _needs.OnSleepChanged -= UpdateUIElement;
+            _isSubscribed = false;
         }
     }
 }

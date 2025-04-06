@@ -15,6 +15,7 @@ public class HappinessUIElement : CreatureNeedUIElement
         if (_needs != null && !_isSubscribed)
         {
             _needs.OnHappinessChanged += UpdateUIElement;
+            _isSubscribed = true;
         }
     }
 
@@ -23,6 +24,7 @@ public class HappinessUIElement : CreatureNeedUIElement
         if (_needs != null && _isSubscribed)
         {
             _needs.OnHappinessChanged -= UpdateUIElement;
+            _isSubscribed = false;
         }
     }
 }

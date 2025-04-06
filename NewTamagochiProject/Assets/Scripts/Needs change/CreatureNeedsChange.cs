@@ -70,7 +70,7 @@ public class CreatureNeedsChange : MonoBehaviour
 
     private void OnDisable()
     {
-        _uiManager.OnSleepButtonPressed -= OnSleep;
+        if (_uiManager != null && _isSubscribedOnSleepButton) _uiManager.OnSleepButtonPressed -= OnSleep;
     }
 
     private IEnumerator NeedChange(
@@ -96,7 +96,6 @@ public class CreatureNeedsChange : MonoBehaviour
                 StopCoroutine(coroutine);
             }
             _needsCoroutines.Clear();
-
             StartNeedsCoroutines(1f, -0.5f);
             Debug.Log("Существо спит!");
         } else
@@ -106,9 +105,22 @@ public class CreatureNeedsChange : MonoBehaviour
                 StopCoroutine(coroutine);
             }
             _needsCoroutines.Clear();
-
             StartNeedsCoroutines(-1f, -1f);
-            Debug.Log("Существо проснулось!");
+            Debug.Log("Существо бодрствует!");
         }
     }
+
+    public void OnFoodDropped(float itemValue)
+    {
+        _needs.hunger += itemValue;
+        Debug.Log("Существо поело!");
+    }
+
+    public void OnMedicineDropped(float itemValue)
+    {
+        _needs.health += itemValue;
+        Debug.Log("Существо выздоровело!");
+    }
 }
+
+

@@ -15,6 +15,7 @@ public class HungerUIElement : CreatureNeedUIElement
         if (_needs != null && !_isSubscribed)
         {
             _needs.OnHungerChanged += UpdateUIElement;
+            _isSubscribed = true;
         }
     }
 
@@ -23,6 +24,7 @@ public class HungerUIElement : CreatureNeedUIElement
         if (_needs != null && _isSubscribed)
         {
             _needs.OnHungerChanged -= UpdateUIElement;
+            _isSubscribed = false;
         }
     }
 }
