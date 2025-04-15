@@ -3,11 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Asset/Minigames/Color Pallets")]
 public class ColorPalletsSO : ScriptableObject
 {
-    public ColorPalette[] Pallets;
+    public ColorPallete[] easyPallets;
+    public ColorPallete[] midPallets;
+    public ColorPallete[] hardPallets;
 }
 
 [System.Serializable]
-public struct ColorPalette
+public struct ColorPallete
 {
     public Color baseColor;
     public Color variantColor;

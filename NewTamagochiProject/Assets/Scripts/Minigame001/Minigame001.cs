@@ -10,9 +10,11 @@ public class Minigame001 : MonoBehaviour
     [Header("Level properties")]
     [SerializeField][Min(2)] private int _numberOfSquares;
     [SerializeField][Min(2)] private float _secondsForLevel;
-    private int _numberOfLevels = 0;
     [Header("Color packs")]
     [SerializeField] private ColorPalletsSO _colorPallets;
+
+    private int _numberOfLevels = 0;
+    private int _numberOfDiffChange = 0;
 
     private CustomObjectPool _pool;
     private Coroutine _gameCoroutine;
@@ -33,7 +35,11 @@ public class Minigame001 : MonoBehaviour
 
     private IEnumerator StartGame()
     {
-        SetUpLevel(_numberOfSquares);
+        ColorPallete[] currentPallete = new ColorPallete[0];
+        if (_numberOfDiffChange < 10) currentPallete = _colorPallets.easyPallets;
+        else currentPallete = _colorPallets.midPallets;
+        _numberOfDiffChange++;
+        SetUpLevel(_numberOfSquares, currentPallete);
         if (_numberOfSquares < 8 && _numberOfSquares == _numberOfLevels)
         {
             _numberOfSquares++;
@@ -41,6 +47,7 @@ public class Minigame001 : MonoBehaviour
         }
         else _numberOfLevels++;
         yield return new WaitForSeconds(_secondsForLevel);
+        _pool.ReleaseAll();
         Debug.Log("Конец игры!");
     }
 
@@ -58,12 +65,12 @@ public class Minigame001 : MonoBehaviour
         Debug.LogWarning("Game Over! Вы выбрали неправильный цвет");
     }
 
-    private void SetUpLevel(int lvlSquareNumber)
+    private void SetUpLevel(int lvlSquareNumber, ColorPallete[] currentPallete)
     {
         _pool.ReleaseAll(
             (GameObject obj) => obj.GetComponentInChildren<Button>().onClick.RemoveAllListeners());
         int selectedSquare = Random.Range(0, _numberOfSquares * _numberOfSquares);
-        Debug.Log(selectedSquare);
+        int selectedPallete = Random.Range(0, _colorPallets.midPallets.Length);
         float width = _squareRectTransform.rect.width;
         float lvlSquareLength = (lvlSquareNumber - 1) * width;
         float topLeftPosX = -lvlSquareLength / 2;
@@ -80,11 +87,11 @@ public class Minigame001 : MonoBehaviour
                 gameSquare.transform.SetParent(transform, false);
                 gameSquare.GetComponent<RectTransform>().anchoredPosition = new Vector2(currentPosX, currentPosY);
                 if (currentSquare == selectedSquare) {
-                    gameSquare.GetComponentInChildren<Image>().color = _colorPallets.Pallets[0].variantColor;
+                    gameSquare.GetComponentInChildren<Image>().color = currentPallete[selectedPallete].variantColor;
                     gameSquare.GetComponentInChildren<Button>().onClick.AddListener(()=>StartLevelButton());
                 } else if (currentSquare != selectedSquare) 
                 {
-                    gameSquare.GetComponentInChildren<Image>().color = _colorPallets.Pallets[0].baseColor;
+                    gameSquare.GetComponentInChildren<Image>().color = currentPallete[selectedPallete].baseColor;
                     gameSquare.GetComponentInChildren<Button>().onClick.AddListener(() => EndGameButton());
                 }
                 currentSquare++;
@@ -95,3 +102,4 @@ public class Minigame001 : MonoBehaviour
         }
     }
 }
+

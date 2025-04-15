@@ -248,8 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293b28db6ccfbfe4ba2c588f25a1356d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _square: {fileID: 826814886843330033, guid: 6e2aab9da7ccb074d8dedb5ee9db3755, type: 3}
-  _selectableSquare: {fileID: 826814886843330033, guid: 9d2b9369ff3d825409424268063d5f2c, type: 3}
+  _square: {fileID: 826814886843330033, guid: 9d2b9369ff3d825409424268063d5f2c, type: 3}
   _numberOfSquares: 2
   _secondsForLevel: 5
   _colorPallets: {fileID: 11400000, guid: 23e72b21ecfc03549bf4b89fbed97772, type: 2}
