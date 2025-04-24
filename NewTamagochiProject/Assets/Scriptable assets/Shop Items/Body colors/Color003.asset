@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db5577226b420cb4bb62a3f2c231cc06, type: 3}
-  m_Name: Color001
+  m_Name: Color003
   m_EditorClassIdentifier: 
-  <itemIcon>k__BackingField: {fileID: 21300000, guid: af22c813112ca75419d52d9bf0d5298a, type: 3}
+  <itemIcon>k__BackingField: {fileID: 21300000, guid: 7d4128508cd68e846ba19faa7af78b3b, type: 3}
   <price>k__BackingField: 50
-  <bodyColor>k__BackingField: {r: 0.52201253, g: 0.2557419, b: 0.113266796, a: 1}
-  <bodyColorType>k__BackingField: 0
+  <bodyColor>k__BackingField: {r: 1, g: 0.11518325, b: 0, a: 1}
+  <bodyColorType>k__BackingField: 2

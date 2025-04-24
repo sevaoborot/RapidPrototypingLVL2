@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
@@ -21,8 +19,8 @@ public class Shop : MonoBehaviour
         _isSubscribedOnBodyColorButton = true;
         _headCategoryButton.Click += OnHeadColorCategoryClick;
         _isSubscribedOnHeadButton = true;
+        _itemsList.OnInitialize();
         OnBodyColorCategoryClick();
-        _itemsList.ShowItems(_shopContent.BodyColors);
     }
 
     private void OnEnable()
@@ -51,11 +49,15 @@ public class Shop : MonoBehaviour
     {
         _bodyColorCategoryButton.Select();
         _headCategoryButton.Unselect();
+        _itemsList.ClearItems();
+        _itemsList.ShowItems(_shopContent.BodyColors);
     }
 
     private void OnHeadColorCategoryClick()
     {
         _headCategoryButton.Select();
         _bodyColorCategoryButton.Unselect();
+        _itemsList.ClearItems();
+        _itemsList.ShowItems(_shopContent.HeadItems);
     }
 }

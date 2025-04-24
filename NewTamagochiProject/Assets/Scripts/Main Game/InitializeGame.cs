@@ -4,10 +4,11 @@ public class InitializeGame : MonoBehaviour
 {
     [SerializeField] private CreatureNeedsUIManager _creatureUI;
     [SerializeField] private CreatureNeedsChange _creatureNeedsChange;
+    [SerializeField] private string _dataFileName;
 
     private TamagochiInputActions _inputActions;
     private CreatureNeeds _needs;
-    private InputOutputManager _inputManager;
+    private MaingameInputOutputData _inputOutputManager;
 
     private bool _isSleeping = false;
 
@@ -15,7 +16,7 @@ public class InitializeGame : MonoBehaviour
     {
         _inputActions = new TamagochiInputActions();
         _needs = new CreatureNeeds();
-        _inputManager = new InputOutputManager();
+        _inputOutputManager = new MaingameInputOutputData(_dataFileName);
         GameData loadedData = new GameData(_needs);
 
         if (!PlayerPrefs.HasKey("FirstGameRun"))
@@ -30,7 +31,7 @@ public class InitializeGame : MonoBehaviour
         else
         {
             Debug.Log("Уже не первый раз заходите, не так ли?");
-            loadedData = _inputManager.LoadData();
+            loadedData = _inputOutputManager.LoadData();
             if (loadedData != null)
             {
                 _needs.SetCreatureNeedsValues(loadedData.creatureNeeds);
@@ -50,12 +51,12 @@ public class InitializeGame : MonoBehaviour
 
     private void OnApplicationPause(bool pause)
     {
-        if (pause) _inputManager.SaveData(_needs, _isSleeping);
+        if (pause) _inputOutputManager.SaveData(_needs, _isSleeping);
     }
 
     private void OnApplicationQuit()
     {
-        _inputManager.SaveData(_needs, _isSleeping);
+        _inputOutputManager.SaveData(_needs, _isSleeping);
     }
 
     private void SetSleepStatus(bool isSleeping) => _isSleeping = isSleeping;

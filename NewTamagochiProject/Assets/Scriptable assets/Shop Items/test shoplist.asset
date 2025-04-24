@@ -17,3 +17,4 @@ MonoBehaviour:
   _bodyColors:
   - {fileID: 11400000, guid: 179685a725f965341943d2f07bb5aa0b, type: 2}
   - {fileID: 11400000, guid: 286cc7d5740d2aa4786a38c4d2b14d9f, type: 2}
+  - {fileID: 11400000, guid: 2d9039a0bf3ee94488d4bf48ef88b7c0, type: 2}

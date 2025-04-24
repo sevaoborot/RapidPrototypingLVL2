@@ -623,6 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _creatureUI: {fileID: 1799700716}
   _creatureNeedsChange: {fileID: 6308972}
+  _dataFileName: petData.json
 --- !u!4 &491031308
 Transform:
   m_ObjectHideFlags: 0

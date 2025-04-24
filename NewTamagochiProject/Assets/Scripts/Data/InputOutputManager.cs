@@ -3,29 +3,27 @@ using UnityEngine;
 
 public class InputOutputManager
 {
+    private string _fileName;
     private string _jsonPath;
 
-    public InputOutputManager()
+    public InputOutputManager(string fileName)
     {
-        _jsonPath = Path.Combine(Application.persistentDataPath, "petData.json");
+        _fileName = fileName;
+        _jsonPath = Path.Combine(Application.persistentDataPath, _fileName);
     }
 
-    public void SaveData(CreatureNeeds needs, bool isSleeping)
+    public void SaveToFile<T>(T data)
     {
-        PlayerPrefs.SetString("LastSaveTime", System.DateTime.Now.ToString());
-        PlayerPrefs.Save();
-        GameData gameData = new GameData(needs, isSleeping);
-        string json = JsonUtility.ToJson(gameData, true);
+        string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(_jsonPath, json);
-        Debug.Log("Сохранено в " + _jsonPath);
     }
 
-    public GameData LoadData()
+    public T LoadFromFile<T>() where T: class
     {
         if (File.Exists(_jsonPath))
         {
             string json = File.ReadAllText(_jsonPath);
-            return JsonUtility.FromJson<GameData>(json);
+            return JsonUtility.FromJson<T>(json);
         }
         else
         {
