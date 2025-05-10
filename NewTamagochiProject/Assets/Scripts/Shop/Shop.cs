@@ -11,7 +11,7 @@ public class Shop : MonoBehaviour
     private bool _isSubscribedOnBodyColorButton = false;
     private bool _isSubscribedOnHeadButton = false;
 
-    public void OnInitialize()
+    public void OnInitialize(OpenedSkinsChecker openedSkinsChecker, SelectedSkinChecker selectedSkinChecker)
     {
         _bodyColorCategoryButton.OnInitialize();
         _headCategoryButton.OnInitialize();
@@ -19,7 +19,7 @@ public class Shop : MonoBehaviour
         _isSubscribedOnBodyColorButton = true;
         _headCategoryButton.Click += OnHeadColorCategoryClick;
         _isSubscribedOnHeadButton = true;
-        _itemsList.OnInitialize();
+        _itemsList.OnInitialize(openedSkinsChecker, selectedSkinChecker);
         OnBodyColorCategoryClick();
     }
 

@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class ShopAndSkinsData 
 {
-    private List<HeadItemEnum> _unlockedHeadItems;
-    private List<BodyColorItemEnum> _unlockedBodycolorItems;
+    [SerializeField] private List<HeadItemEnum> _unlockedHeadItems;
+    [SerializeField] private List<BodyColorItemEnum> _unlockedBodycolorItems;
 
-    private HeadItemEnum _selectedHeadItem;
-    private BodyColorItemEnum _selectedBodycolorItem;
+    [SerializeField] private HeadItemEnum _selectedHeadItem;
+    [SerializeField] private BodyColorItemEnum _selectedBodycolorItem;
 
     public IEnumerable<HeadItemEnum> UnlockedHeadItems => _unlockedHeadItems;
-    public IEnumerable<BodyColorItemEnum> UnlockedBodyColorItemEnums => _unlockedBodycolorItems;
+    public IEnumerable<BodyColorItemEnum> UnlockedBodyColorItems => _unlockedBodycolorItems;
 
     public HeadItemEnum SelectedHeadItem
     {

@@ -683,7 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shop: {fileID: 2046673215}
-  _dataFileName: shopData.json
+  _dataFileName: shopAndSkins.json
 --- !u!4 &1865506128
 Transform:
   m_ObjectHideFlags: 0
