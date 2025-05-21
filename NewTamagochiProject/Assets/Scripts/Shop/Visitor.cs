@@ -34,9 +34,6 @@ public class SkinUnlocker : IVisitor
             _data.OpenHeadItem(item.headType);
         }
     }
-
-    //public void Visit(BodyColorItem item) => _data.OpenBodyColorItem(item.bodyColorType);
-    //public void Visit(HeadItem item) => _data.OpenHeadItem(item.headType);
 }
 
 public class OpenedSkinsChecker : IVisitor
