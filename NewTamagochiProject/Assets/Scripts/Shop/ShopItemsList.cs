@@ -45,7 +45,7 @@ public class ShopItemsList: MonoBehaviour
                 if (_selectedSkinChecker.IsSelected)
                 {
                     itemView.Select();
-                    ShopItemViewClicked?.Invoke(itemView);
+                    //ShopItemViewClicked?.Invoke(itemView);
                 }
                 itemView.Unlock();
             }
@@ -63,6 +63,12 @@ public class ShopItemsList: MonoBehaviour
             _shopItems.Clear();
     }
 
+    public void Select(ShopItemView itemView)
+    {
+        foreach(ShopItemView item in _shopItems) item.UnSelect();
+        itemView?.Select();
+    }
+
     private ShopItemView GetItem(ShopItem shopItem, Transform parentTransform)
     {
         ShopItemView instance = Instantiate(_shopItemPrefab, parentTransform);
@@ -72,6 +78,6 @@ public class ShopItemsList: MonoBehaviour
 
     private void OnItemClick(ShopItemView item)
     {
-
+        ShopItemViewClicked?.Invoke(item);
     }
 }

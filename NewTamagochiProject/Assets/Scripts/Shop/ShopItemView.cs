@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ShopItemView : MonoBehaviour, IPointerClickHandler
 {
     public event Action<ShopItemView> Click;
+    public ShopItem Item { get; private set; }
 
     [SerializeField] private GameObject _itemSelected;
     [SerializeField] private Image _itemPreview;
@@ -17,6 +18,7 @@ public class ShopItemView : MonoBehaviour, IPointerClickHandler
     {
         _itemPreview.sprite = item.itemIcon;
         _itemPrice.text = item.price.ToString();
+        Item = item;
         this.Lock();
     }
 

@@ -17,8 +17,26 @@ public class SkinUnlocker : IVisitor
 
     public SkinUnlocker(ShopAndSkinsData data) => _data = data;
 
-    public void Visit(BodyColorItem item) => _data.OpenBodyColorItem(item.bodyColorType);
-    public void Visit(HeadItem item) => _data.OpenHeadItem(item.headType);
+    public void Visit(BodyColorItem item)
+    {
+        if (_data.Coins >= item.price)
+        {
+            _data.Coins = _data.Coins - item.price;
+            _data.OpenBodyColorItem(item.bodyColorType);
+        }
+    }
+
+    public void Visit(HeadItem item)
+    {
+        if (_data.Coins >= item.price)
+        {
+            _data.Coins = _data.Coins - item.price;
+            _data.OpenHeadItem(item.headType);
+        }
+    }
+
+    //public void Visit(BodyColorItem item) => _data.OpenBodyColorItem(item.bodyColorType);
+    //public void Visit(HeadItem item) => _data.OpenHeadItem(item.headType);
 }
 
 public class OpenedSkinsChecker : IVisitor

@@ -11,6 +11,8 @@ public class InitializeShop : MonoBehaviour
 
     private OpenedSkinsChecker _openedSkinsChecker;
     private SelectedSkinChecker _selectedSkinChecker;
+    private SkinSelector _skinSelector;
+    private SkinUnlocker _skinUnlocker;
 
     private void Awake()
     {
@@ -21,8 +23,10 @@ public class InitializeShop : MonoBehaviour
         if (loadedData == null) throw new NullReferenceException(nameof(loadedData));
         _data = loadedData;
         _openedSkinsChecker = new OpenedSkinsChecker(_data);
-        _selectedSkinChecker = new SelectedSkinChecker(_data);        
-        _shop.OnInitialize(_openedSkinsChecker, _selectedSkinChecker);
+        _selectedSkinChecker = new SelectedSkinChecker(_data);  
+        _skinSelector = new SkinSelector(_data);
+        _skinUnlocker = new SkinUnlocker(_data);
+        _shop.OnInitialize(_openedSkinsChecker, _selectedSkinChecker, _skinSelector, _skinUnlocker);
     }
 
     private void OnApplicationPause(bool pause)

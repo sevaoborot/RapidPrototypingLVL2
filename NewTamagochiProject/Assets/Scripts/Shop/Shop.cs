@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
@@ -10,8 +10,12 @@ public class Shop : MonoBehaviour
 
     private bool _isSubscribedOnBodyColorButton = false;
     private bool _isSubscribedOnHeadButton = false;
+    private OpenedSkinsChecker _openedSkinChecker;
+    private SelectedSkinChecker _selectedSkinChecker;
+    private SkinSelector _skinSelector;
+    private SkinUnlocker _skinUnlocker;
 
-    public void OnInitialize(OpenedSkinsChecker openedSkinsChecker, SelectedSkinChecker selectedSkinChecker)
+    public void OnInitialize(OpenedSkinsChecker openedSkinsChecker, SelectedSkinChecker selectedSkinChecker, SkinSelector skinSelector, SkinUnlocker skinUnlocker)
     {
         _bodyColorCategoryButton.OnInitialize();
         _headCategoryButton.OnInitialize();
@@ -20,6 +24,11 @@ public class Shop : MonoBehaviour
         _headCategoryButton.Click += OnHeadColorCategoryClick;
         _isSubscribedOnHeadButton = true;
         _itemsList.OnInitialize(openedSkinsChecker, selectedSkinChecker);
+        _itemsList.ShopItemViewClicked += OnItemViewClicked;
+        _skinSelector = skinSelector;
+        _selectedSkinChecker = selectedSkinChecker;
+        _openedSkinChecker = openedSkinsChecker;
+        _skinUnlocker = skinUnlocker;
         OnBodyColorCategoryClick();
     }
 
@@ -43,6 +52,7 @@ public class Shop : MonoBehaviour
         _isSubscribedOnBodyColorButton = false;
         _headCategoryButton.Click -= OnHeadColorCategoryClick;
         _isSubscribedOnHeadButton = false;
+        _itemsList.ShopItemViewClicked -= OnItemViewClicked;
     }
 
     private void OnBodyColorCategoryClick()
@@ -59,5 +69,26 @@ public class Shop : MonoBehaviour
         _bodyColorCategoryButton.Unselect();
         _itemsList.ClearItems();
         _itemsList.ShowItems(_shopContent.HeadItems);
+    }
+
+    private void OnItemViewClicked(ShopItemView itemView)
+    {
+        IItem visitorItem = itemView.Item as IItem;
+        visitorItem.Accept(_openedSkinChecker);
+        visitorItem.Accept(_selectedSkinChecker);
+        if (_openedSkinChecker.IsOpened)
+        {
+            if (_selectedSkinChecker.IsSelected)
+            {
+                Debug.Log("Вы нажали на выбранный скин. Этот скин сейчас установлен как основной");
+            }
+            visitorItem.Accept(_skinSelector);
+            _itemsList.Select(itemView);
+        } else
+        {
+            visitorItem.Accept(_skinUnlocker);
+            visitorItem.Accept(_openedSkinChecker);
+            if (_openedSkinChecker.IsOpened) itemView.Unlock();
+        }
     }
 }

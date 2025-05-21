@@ -1,10 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class ShopAndSkinsData 
 {
+    [SerializeField] private int _coins;
+
     [SerializeField] private List<HeadItemEnum> _unlockedHeadItems;
     [SerializeField] private List<BodyColorItemEnum> _unlockedBodycolorItems;
 
@@ -13,6 +15,19 @@ public class ShopAndSkinsData
 
     public IEnumerable<HeadItemEnum> UnlockedHeadItems => _unlockedHeadItems;
     public IEnumerable<BodyColorItemEnum> UnlockedBodyColorItems => _unlockedBodycolorItems;
+
+    public event Action<int> OnCoinsChanged;
+
+    public int Coins
+    {
+        get => _coins;
+        set
+        {
+            if (value < 0) _coins = 0;
+            _coins = value;
+            OnCoinsChanged?.Invoke(_coins);
+        }
+    }
 
     public HeadItemEnum SelectedHeadItem
     {

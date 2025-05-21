@@ -31,7 +31,7 @@ public class CreatureNeeds
         {
             if (Mathf.Approximately(_hunger, value)) return;
             _hunger = Mathf.Clamp(value, 0f, 100f);
-            OnHungerChanged?.Invoke(hunger);
+            OnHungerChanged?.Invoke(_hunger);
         }
     }
     public float happiness
