@@ -27,7 +27,7 @@ public abstract class CreatureNeedUIElement : MonoBehaviour
         Vector2 newSize;
         if (needValue <= 5f)
         {
-            newSize = new Vector2(_needSlider.sizeDelta.x, 5f);
+            //newSize = new Vector2(_needSlider.sizeDelta.x, 5f);
             return;
         }
         newSize = new Vector2(_needSlider.sizeDelta.x, needValue);
