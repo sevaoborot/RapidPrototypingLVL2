@@ -1,16 +1,19 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Asset/Minigames/Color Pallets")]
-public class ColorPalletsSO : ScriptableObject
+namespace mingame001
 {
-    public ColorPallete[] easyPallets;
-    public ColorPallete[] midPallets;
-    public ColorPallete[] hardPallets;
-}
+    [CreateAssetMenu(menuName = "Asset/Minigames/Color Pallets")]
+    public class ColorPalletsSO : ScriptableObject
+    {
+        public ColorPallete[] easyPallets;
+        public ColorPallete[] midPallets;
+        public ColorPallete[] hardPallets;
+    }
 
-[System.Serializable]
-public struct ColorPallete
-{
-    public Color baseColor;
-    public Color variantColor;
+    [System.Serializable]
+    public struct ColorPallete
+    {
+        public Color baseColor;
+        public Color variantColor;
+    }
 }
