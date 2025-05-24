@@ -1,13 +1,16 @@
-using System;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace minigame002
 {
     public class Minigame002Setup : MonoBehaviour
     {
-        [SerializeField] private LevelGeneration _levelGeneration;
-        [SerializeField] private StairPlayer _player;
-        [SerializeField] private StairButtons _buttons;
+        public event Action GameOverHandler;
+
+        [SerializeField] private Minigame002LevelGeneration _levelGeneration;
+        [SerializeField] private Minigame002Player _player;
+        [SerializeField] private Minigame002UI _ui;
         [SerializeField] private string _dataFileName;
         [Space]
         [SerializeField] private Transform _startPosition;
@@ -27,8 +30,10 @@ namespace minigame002
             loadedData = _inputOutputManager.LoadData();
             if (loadedData == null) throw new NullReferenceException(nameof(loadedData));
             _data = loadedData;
-            _levelGeneration.OnInitialize(_distanceX, _distanceY, _startPosition.position);
-            _player.OnInitialize(_distanceX, _distanceY, _startPosition.position, _buttons);
+            _levelGeneration.OnInitialize(_distanceX, _distanceY, _startPosition.position, _ui);
+            _ui.OnInitialize(this);
+            _player.OnInitialize(_distanceX, _distanceY, _startPosition.position, _ui);
+            _player.PlayerNotOnStairHandler += GameOver;
         }
 
         private void OnApplicationPause(bool pause)
@@ -45,6 +50,18 @@ namespace minigame002
         {
             _data.Coins += _earnedCoins;
             _inputOutputManager.SaveData(_data);
+        }
+
+        private IEnumerator StairTimer()
+        {
+            yield return null;
+            GameOver();
+        }
+
+        private void GameOver()
+        {
+            Debug.Log("Игра окончена, лошок!");
+            GameOverHandler?.Invoke();
         }
     }
 }

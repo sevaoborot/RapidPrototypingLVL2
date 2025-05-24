@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -37,6 +38,11 @@ public class CustomObjectPool
         }
     }
 
+    public void ReleaseBy(Func<GameObject, bool> predicate, Action<GameObject> objCleanup = null)
+    {
+        foreach (GameObject obj in _objects.Where(predicate).ToList()) Release(obj, objCleanup);
+    }
+
     public void ReleaseAll(Action<GameObject> objCleanup = null)
     {
         foreach (GameObject obj in _objects) Release(obj, objCleanup);
@@ -48,4 +54,6 @@ public class CustomObjectPool
         _objects.Add(obj);
         return obj;
     }
+
+
 }
