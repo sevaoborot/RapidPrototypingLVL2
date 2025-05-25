@@ -67,7 +67,7 @@ namespace minigame001
             SaveData();
         }
 
-        private void StartLevelButton()
+        private void CorrectButton()
         {
             StopCoroutine(_gameCoroutine);
             if (_secondsForLevel > 2) _secondsForLevel -= 0.3f;
@@ -75,7 +75,7 @@ namespace minigame001
             _earnedCoins++;
         }
 
-        private void EndGameButton()
+        private void IncorrectButon()
         {
             StopCoroutine(_gameCoroutine);
             _pool.ReleaseAll();
@@ -107,12 +107,12 @@ namespace minigame001
                     if (currentSquare == selectedSquare)
                     {
                         gameSquare.GetComponentInChildren<Image>().color = currentPallete[selectedPallete].variantColor;
-                        gameSquare.GetComponentInChildren<Button>().onClick.AddListener(() => StartLevelButton());
+                        gameSquare.GetComponentInChildren<Button>().onClick.AddListener(() => CorrectButton());
                     }
                     else if (currentSquare != selectedSquare)
                     {
                         gameSquare.GetComponentInChildren<Image>().color = currentPallete[selectedPallete].baseColor;
-                        gameSquare.GetComponentInChildren<Button>().onClick.AddListener(() => EndGameButton());
+                        gameSquare.GetComponentInChildren<Button>().onClick.AddListener(() => IncorrectButon());
                     }
                     currentSquare++;
                     currentPosY -= width;
