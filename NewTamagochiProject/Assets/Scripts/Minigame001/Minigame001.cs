@@ -16,7 +16,8 @@ namespace minigame001
         [Header("Color packs")]
         [SerializeField] private ColorPalletsSO _colorPallets;
         [Header("Other")]
-        [SerializeField] private string _dataFileName;
+        [SerializeField] private string _shopDataFileName;
+        [SerializeField] private string _needsDataFileName;
 
         private int _numberOfLevels = 0;
         private int _numberOfDiffChange = 0;
@@ -27,8 +28,10 @@ namespace minigame001
 
         private RectTransform _squareRectTransform;
 
-        private ShopAndSkinsData _data;
-        private ShopAndSkinsInputOutput _inputOutputManager;
+        private ShopAndSkinsData _shopData;
+        private ShopAndSkinsInputOutput _shopInputOutputManager;
+        private CreatureNeeds _needs;
+        private GameDataInputOutput _needsInputOutputManager;
 
         private void Awake()
         {
@@ -39,13 +42,20 @@ namespace minigame001
         {
             _squareRectTransform = _square.GetComponent<RectTransform>();
             _pool = new CustomObjectPool(_square, _numberOfSquares * _numberOfSquares);
-            _data = new ShopAndSkinsData();
-            _inputOutputManager = new ShopAndSkinsInputOutput(_dataFileName);
-            ShopAndSkinsData loadedData = new ShopAndSkinsData();
-            loadedData = _inputOutputManager.LoadData();
-            if (loadedData == null) throw new NullReferenceException(nameof(loadedData));
-            _data = loadedData;
-            _gameCoroutine = StartCoroutine(StartGame());
+            _shopData = new ShopAndSkinsData();
+            _shopInputOutputManager = new ShopAndSkinsInputOutput(_shopDataFileName);
+            ShopAndSkinsData loadedShopData = new ShopAndSkinsData();
+            loadedShopData = _shopInputOutputManager.LoadData();
+            if (loadedShopData == null) throw new NullReferenceException(nameof(loadedShopData));
+            _shopData = loadedShopData;
+
+            _needs = new CreatureNeeds();
+            _needsInputOutputManager = new GameDataInputOutput(_needsDataFileName);
+            GameData loadedGameData = new GameData(_needs);
+            loadedGameData = _needsInputOutputManager.LoadData();
+            if (loadedGameData == null) throw new NullReferenceException(nameof(loadedGameData));
+            _needs.SetCreatureNeedsValues(loadedGameData.creatureNeeds);
+            _gameCoroutine = StartCoroutine(StartGame()); 
         }
 
         private IEnumerator StartGame()
@@ -124,16 +134,18 @@ namespace minigame001
 
         private void SaveData()
         {
-            _data.Coins += _earnedCoins;
-            _inputOutputManager.SaveData(_data);
+            _shopData.Coins += _earnedCoins;
+            _shopInputOutputManager.SaveData(_shopData);
+            _needs.happiness += 20f;
+            _needsInputOutputManager.SaveData(_needs, false);
         }
 
-        private void OnApplicationPause(bool pause)
-        {
-            if (pause) _inputOutputManager.SaveData(_data);
-        }
+        //private void OnApplicationPause(bool pause)
+        //{
+        //    if (pause) _shopInputOutputManager.SaveData(_shopData);
+        //}
 
-        private void OnApplicationQuit() => _inputOutputManager.SaveData(_data);
+        //private void OnApplicationQuit() => _shopInputOutputManager.SaveData(_shopData);
     }
 }
 

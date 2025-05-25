@@ -251,7 +251,8 @@ MonoBehaviour:
   _square: {fileID: 826814886843330033, guid: 9d2b9369ff3d825409424268063d5f2c, type: 3}
   _numberOfSquares: 4
   _secondsForLevel: 5
-  _dataFileName: shopAndSkins.json
+  _shopDataFileName: shopAndSkins.json
+  _needsDataFileName: petData.json
 --- !u!1 &514515539
 GameObject:
   m_ObjectHideFlags: 0

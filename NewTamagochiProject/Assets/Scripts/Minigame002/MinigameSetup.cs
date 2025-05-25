@@ -11,7 +11,8 @@ namespace minigame002
         [SerializeField] private LevelGeneration _levelGeneration;
         [SerializeField] private Player _player;
         [SerializeField] private MinigameUI _ui;
-        [SerializeField] private string _dataFileName;
+        [SerializeField] private string _shopDataFileName;
+        [SerializeField] private string _needsDataFileName;
         [Space]
         [SerializeField] private Transform _startPosition;
         [SerializeField] private float _distanceX;
@@ -19,17 +20,27 @@ namespace minigame002
 
         private int _earnedCoins = 0;
 
-        private ShopAndSkinsData _data;
+        private ShopAndSkinsData _shopData;
         private ShopAndSkinsInputOutput _inputOutputManager;
+        private CreatureNeeds _needs;
+        private GameDataInputOutput _needsInputOutputManager;
 
         private void Awake()
         {
-            _data = new ShopAndSkinsData();
-            _inputOutputManager = new ShopAndSkinsInputOutput(_dataFileName);
-            ShopAndSkinsData loadedData = new ShopAndSkinsData();
-            loadedData = _inputOutputManager.LoadData();
-            if (loadedData == null) throw new NullReferenceException(nameof(loadedData));
-            _data = loadedData;
+            _shopData = new ShopAndSkinsData();
+            _inputOutputManager = new ShopAndSkinsInputOutput(_shopDataFileName);
+            ShopAndSkinsData loadedShopData = new ShopAndSkinsData();
+            loadedShopData = _inputOutputManager.LoadData();
+            if (loadedShopData == null) throw new NullReferenceException(nameof(loadedShopData));
+            _shopData = loadedShopData;
+
+            _needs = new CreatureNeeds();
+            _needsInputOutputManager = new GameDataInputOutput(_needsDataFileName);
+            GameData loadedGameData = new GameData(_needs);
+            loadedGameData = _needsInputOutputManager.LoadData();
+            if (loadedGameData == null) throw new NullReferenceException(nameof(loadedGameData));
+            _needs.SetCreatureNeedsValues(loadedGameData.creatureNeeds);
+
             _levelGeneration.OnInitialize(_distanceX, _distanceY, _startPosition.position, _ui);
             _ui.OnInitialize(this);
             _player.OnInitialize(_distanceX, _distanceY, _startPosition.position, _ui);
@@ -38,18 +49,20 @@ namespace minigame002
 
         private void OnApplicationPause(bool pause)
         {
-            if (pause) _inputOutputManager.SaveData(_data);
+            if (pause) _inputOutputManager.SaveData(_shopData);
         }
 
         private void OnApplicationQuit()
         {
-            _inputOutputManager.SaveData(_data);
+            _inputOutputManager.SaveData(_shopData);
         }
 
         private void SaveData()
         {
-            _data.Coins += _earnedCoins;
-            _inputOutputManager.SaveData(_data);
+            _shopData.Coins += _earnedCoins;
+            _inputOutputManager.SaveData(_shopData);
+            _needs.happiness += 20f;
+            _needsInputOutputManager.SaveData(_needs, false);
         }
 
         private IEnumerator StairTimer()
@@ -62,6 +75,7 @@ namespace minigame002
         {
             Debug.Log("Игра окончена, лошок!");
             GameOverHandler?.Invoke();
+            SaveData();
         }
     }
 }

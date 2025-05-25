@@ -9,7 +9,7 @@ public class InitializeGame : MonoBehaviour
 
     private TamagochiInputActions _inputActions;
     private CreatureNeeds _needs;
-    private MaingameInputOutputData _maingameInputOutputManager;
+    private GameDataInputOutput _maingameInputOutputManager;
 
     [Space]
     [Header("Skins stuff")]
@@ -25,7 +25,7 @@ public class InitializeGame : MonoBehaviour
     {
         _inputActions = new TamagochiInputActions();
         _needs = new CreatureNeeds();
-        _maingameInputOutputManager = new MaingameInputOutputData(_creatureDataFileName);
+        _maingameInputOutputManager = new GameDataInputOutput(_creatureDataFileName);
 
         _shopAndSkinsData = new ShopAndSkinsData();
         _shopInputOutputManager = new ShopAndSkinsInputOutput(_skinsDataFileName);

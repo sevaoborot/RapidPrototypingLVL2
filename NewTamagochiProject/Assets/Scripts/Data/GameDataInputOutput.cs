@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class MaingameInputOutputData
+public class GameDataInputOutput
 {
     private InputOutputManager _ioManager;
 
-    public MaingameInputOutputData(string fileName)
+    public GameDataInputOutput(string fileName)
     {
         _ioManager = new InputOutputManager(fileName);
     }

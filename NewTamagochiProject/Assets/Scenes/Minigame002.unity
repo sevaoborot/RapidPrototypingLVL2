@@ -636,7 +636,8 @@ MonoBehaviour:
   _levelGeneration: {fileID: 637693939}
   _player: {fileID: 1321844640}
   _ui: {fileID: 187798777}
-  _dataFileName: shopAndSkins.json
+  _shopDataFileName: shopAndSkins.json
+  _needsDataFileName: petData.json
   _startPosition: {fileID: 818086508}
   _distanceX: 1.5
   _distanceY: 1.2

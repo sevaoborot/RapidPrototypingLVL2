@@ -252,7 +252,8 @@ MonoBehaviour:
   _numberOfSquares: 2
   _secondsForLevel: 5
   _colorPallets: {fileID: 11400000, guid: 23e72b21ecfc03549bf4b89fbed97772, type: 2}
-  _dataFileName: shopAndSkins.json
+  _shopDataFileName: shopAndSkins.json
+  _needsDataFileName: petData.json
 --- !u!1 &514515539
 GameObject:
   m_ObjectHideFlags: 0
