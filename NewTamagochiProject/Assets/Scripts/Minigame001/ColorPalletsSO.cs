@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace mingame001
+namespace minigame001
 {
     [CreateAssetMenu(menuName = "Asset/Minigames/Color Pallets")]
     public class ColorPalletsSO : ScriptableObject

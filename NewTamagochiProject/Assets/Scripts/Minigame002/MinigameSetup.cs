@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace minigame002
 {
-    public class Minigame002Setup : MonoBehaviour
+    public class MinigameSetup : MonoBehaviour
     {
         public event Action GameOverHandler;
 
-        [SerializeField] private Minigame002LevelGeneration _levelGeneration;
-        [SerializeField] private Minigame002Player _player;
-        [SerializeField] private Minigame002UI _ui;
+        [SerializeField] private LevelGeneration _levelGeneration;
+        [SerializeField] private Player _player;
+        [SerializeField] private MinigameUI _ui;
         [SerializeField] private string _dataFileName;
         [Space]
         [SerializeField] private Transform _startPosition;

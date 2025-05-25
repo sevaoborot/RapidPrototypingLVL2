@@ -2,7 +2,7 @@
 
 namespace minigame002
 {
-    public class Minigame002LevelGeneration : MonoBehaviour
+    public class LevelGeneration : MonoBehaviour
     {
         [Header("Stair settings")]
         [SerializeField] private GameObject _stair;
@@ -10,18 +10,17 @@ namespace minigame002
         [Header("Coins settings")]
         [SerializeField] private GameObject _coin;
 
-        private Minigame002UI _ui;
+        private MinigameUI _ui;
 
         private Vector3 _startPosition;
         private float _distanceX;
         private float _distanceY;
-        private int _stairsJumped = 0;
 
         private CustomObjectPool _stairsPool;
         private CustomObjectPool _coinsPool;
         private GameObject _currentStair;
 
-        public void OnInitialize(float distanceX, float distanceY, Vector3 startPosition, Minigame002UI ui)
+        public void OnInitialize(float distanceX, float distanceY, Vector3 startPosition, MinigameUI ui)
         {
             _ui = ui;
             _ui.Jump += StairsGenerator;
@@ -49,6 +48,7 @@ namespace minigame002
         private void StairSpawn()
         {
             GameObject stair = _stairsPool.Get();
+            stair.transform.SetParent(transform, false);
             if (Random.Range(-1, 1) == 0) stair.transform.position = new Vector3(_currentStair.transform.position.x + _distanceX,
                 _currentStair.transform.position.y + _distanceY,
                 _currentStair.transform.position.z);

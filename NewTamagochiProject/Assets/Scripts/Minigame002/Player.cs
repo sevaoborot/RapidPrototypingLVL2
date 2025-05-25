@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace minigame002
 {
-    public class Minigame002Player : MonoBehaviour
+    public class Player : MonoBehaviour
     {
         public event Action PlayerNotOnStairHandler;
 
-        private Minigame002UI _buttons;
+        private MinigameUI _buttons;
         private Rigidbody2D _rb;
 
         private float _distanceX;
@@ -22,7 +22,7 @@ namespace minigame002
             Gizmos.DrawWireCube(GetComponent<Collider2D>().bounds.center, GetComponent<Collider2D>().bounds.size);
         }
 
-        public void OnInitialize(float distanceX, float distanceY, Vector3 startPosition, Minigame002UI buttons)
+        public void OnInitialize(float distanceX, float distanceY, Vector3 startPosition, MinigameUI buttons)
         {
             _rb = GetComponent<Rigidbody2D>();
             _distanceX = distanceX;

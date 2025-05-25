@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using mingame001;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,16 +33,6 @@ namespace minigame001
         private void Awake()
         {
             OnInitialize();
-        }
-
-        private void OnApplicationPause(bool pause)
-        {
-            if (pause) _inputOutputManager.SaveData(_data);
-        }
-
-        private void OnApplicationQuit()
-        {
-            _inputOutputManager.SaveData(_data);
         }
 
         public void OnInitialize()
@@ -112,7 +101,7 @@ namespace minigame001
                 for (int j = 0; j < _numberOfSquares; j++)
                 {
                     GameObject gameSquare = _pool.Get();
-                    gameSquare.name = $"{currentSquare}";
+                    //gameSquare.name = $"{currentSquare}";
                     gameSquare.transform.SetParent(transform, false);
                     gameSquare.GetComponent<RectTransform>().anchoredPosition = new Vector2(currentPosX, currentPosY);
                     if (currentSquare == selectedSquare)
@@ -138,6 +127,13 @@ namespace minigame001
             _data.Coins += _earnedCoins;
             _inputOutputManager.SaveData(_data);
         }
+
+        private void OnApplicationPause(bool pause)
+        {
+            if (pause) _inputOutputManager.SaveData(_data);
+        }
+
+        private void OnApplicationQuit() => _inputOutputManager.SaveData(_data);
     }
 }
 

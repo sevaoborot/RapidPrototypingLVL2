@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace minigame002
 {
-    public class Minigame002UI : MonoBehaviour
+    public class MinigameUI : MonoBehaviour
     {
         public event Action Jump;
         public event Action Rotate;
@@ -13,7 +13,7 @@ namespace minigame002
         [SerializeField] private Button _jumpButton;
         [SerializeField] private Button _rotateButton;
 
-        public void OnInitialize(Minigame002Setup _setup)
+        public void OnInitialize(MinigameSetup _setup)
         {
             _setup.GameOverHandler += BlockButtons;
         }
