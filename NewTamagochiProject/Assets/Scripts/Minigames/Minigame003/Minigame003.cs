@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace minigame003
 {
-    public class Minigame003 : MonoBehaviour
+    public class Minigame003 : Minigame
     {
         [Header("Prefabs")]
         [SerializeField] private GameObject _square;
@@ -35,12 +35,7 @@ namespace minigame003
         private CreatureNeeds _needs;
         private GameDataInputOutput _needsInputOutputManager;
 
-        private void Awake()
-        {
-            OnInitialize();
-        }
-
-        public void OnInitialize()
+        public override void OnInitialize()
         {
             _squareRectTransform = _square.GetComponent<RectTransform>();
             _pool = new CustomObjectPool(_square, _numberOfSquares * _numberOfSquares);
@@ -152,13 +147,6 @@ namespace minigame003
                 _earnedCoins++;
             }
         }
-
-        //private void OnApplicationPause(bool pause)
-        //{
-        //    if (pause) _inputOutputManager.SaveData(_shopData);
-        //}
-
-        //private void OnApplicationQuit() => _inputOutputManager.SaveData(_shopData);
 
         private void SaveData()
         {

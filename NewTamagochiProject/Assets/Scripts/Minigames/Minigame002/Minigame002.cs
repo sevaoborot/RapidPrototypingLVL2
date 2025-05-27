@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace minigame002
 {
-    public class MinigameSetup : MonoBehaviour
+    public class Minigame002 : Minigame
     {
         public event Action GameOverHandler;
 
@@ -25,7 +25,7 @@ namespace minigame002
         private CreatureNeeds _needs;
         private GameDataInputOutput _needsInputOutputManager;
 
-        private void Awake()
+        public override void OnInitialize()
         {
             _shopData = new ShopAndSkinsData();
             _inputOutputManager = new ShopAndSkinsInputOutput(_shopDataFileName);
@@ -45,16 +45,6 @@ namespace minigame002
             _ui.OnInitialize(this);
             _player.OnInitialize(_distanceX, _distanceY, _startPosition.position, _ui);
             _player.PlayerNotOnStairHandler += GameOver;
-        }
-
-        private void OnApplicationPause(bool pause)
-        {
-            if (pause) _inputOutputManager.SaveData(_shopData);
-        }
-
-        private void OnApplicationQuit()
-        {
-            _inputOutputManager.SaveData(_shopData);
         }
 
         private void SaveData()

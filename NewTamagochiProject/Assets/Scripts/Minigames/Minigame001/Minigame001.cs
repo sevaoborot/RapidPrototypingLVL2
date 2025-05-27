@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace minigame001
 {
-    public class Minigame001 : MonoBehaviour
+    public class Minigame001 : Minigame
     {
         [Header("Prefabs")]
         [SerializeField] private GameObject _square;
@@ -33,12 +33,7 @@ namespace minigame001
         private CreatureNeeds _needs;
         private GameDataInputOutput _needsInputOutputManager;
 
-        private void Awake()
-        {
-            OnInitialize();
-        }
-
-        public void OnInitialize()
+        public override void OnInitialize()
         {
             _squareRectTransform = _square.GetComponent<RectTransform>();
             _pool = new CustomObjectPool(_square, _numberOfSquares * _numberOfSquares);
@@ -55,7 +50,8 @@ namespace minigame001
             loadedGameData = _needsInputOutputManager.LoadData();
             if (loadedGameData == null) throw new NullReferenceException(nameof(loadedGameData));
             _needs.SetCreatureNeedsValues(loadedGameData.creatureNeeds);
-            _gameCoroutine = StartCoroutine(StartGame()); 
+            _gameCoroutine = StartCoroutine(StartGame());
+            Debug.Log("Игра началась");
         }
 
         private IEnumerator StartGame()
@@ -139,13 +135,6 @@ namespace minigame001
             _needs.happiness += 20f;
             _needsInputOutputManager.SaveData(_needs, false);
         }
-
-        //private void OnApplicationPause(bool pause)
-        //{
-        //    if (pause) _shopInputOutputManager.SaveData(_shopData);
-        //}
-
-        //private void OnApplicationQuit() => _shopInputOutputManager.SaveData(_shopData);
     }
 }
 

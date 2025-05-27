@@ -73,7 +73,7 @@ public class Shop : MonoBehaviour
 
     private void OnItemViewClicked(ShopItemView itemView)
     {
-        IItem visitorItem = itemView.Item as IItem;
+        IShopItem visitorItem = itemView.Item as IShopItem;
         visitorItem.Accept(_openedSkinChecker);
         visitorItem.Accept(_selectedSkinChecker);
         if (_openedSkinChecker.IsOpened)

@@ -13,7 +13,7 @@ namespace minigame002
         [SerializeField] private Button _jumpButton;
         [SerializeField] private Button _rotateButton;
 
-        public void OnInitialize(MinigameSetup _setup)
+        public void OnInitialize(Minigame002 _setup)
         {
             _setup.GameOverHandler += BlockButtons;
         }

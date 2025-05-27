@@ -1,17 +1,17 @@
 using System.Linq;
 
-public interface IItem
+public interface IShopItem
 {
-    public void Accept(IVisitor visitor);
+    public void Accept(IShopVisitor visitor);
 }
 
-public interface IVisitor
+public interface IShopVisitor
 {
     public void Visit(BodyColorItem item);
     public void Visit(HeadItem item);
 }
 
-public class SkinUnlocker : IVisitor
+public class SkinUnlocker : IShopVisitor
 {
     private ShopAndSkinsData _data;
 
@@ -36,7 +36,7 @@ public class SkinUnlocker : IVisitor
     }
 }
 
-public class OpenedSkinsChecker : IVisitor
+public class OpenedSkinsChecker : IShopVisitor
 {
     public bool IsOpened { get; private set; }
 
@@ -50,7 +50,7 @@ public class OpenedSkinsChecker : IVisitor
         => IsOpened = _data.UnlockedHeadItems.Contains(item.headType);
 }
 
-public class SelectedSkinChecker : IVisitor
+public class SelectedSkinChecker : IShopVisitor
 {
     public bool IsSelected { get; private set; }
 
@@ -64,7 +64,7 @@ public class SelectedSkinChecker : IVisitor
         => IsSelected = _data.SelectedHeadItem == item.headType;
 }
 
-public class SkinSelector : IVisitor
+public class SkinSelector : IShopVisitor
 {
     private ShopAndSkinsData _data;
 

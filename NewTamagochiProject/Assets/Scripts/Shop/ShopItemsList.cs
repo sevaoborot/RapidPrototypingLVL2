@@ -35,7 +35,7 @@ public class ShopItemsList: MonoBehaviour
             itemView.UnSelect();
             itemView.Lock();
 
-            if (item is IItem visitorItem)
+            if (item is IShopItem visitorItem)
             {
                 visitorItem.Accept(_openedSkinChecker);
                 visitorItem.Accept(_selectedSkinChecker);
