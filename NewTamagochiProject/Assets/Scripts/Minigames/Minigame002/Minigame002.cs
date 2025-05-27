@@ -20,52 +20,35 @@ namespace minigame002
 
         private int _earnedCoins = 0;
 
-        private ShopAndSkinsData _shopData;
-        private ShopAndSkinsInputOutput _inputOutputManager;
-        private CreatureNeeds _needs;
-        private GameDataInputOutput _needsInputOutputManager;
-
-        public override void OnInitialize()
+        public override void OnInitialize(Action gameOverAction)
         {
-            _shopData = new ShopAndSkinsData();
-            _inputOutputManager = new ShopAndSkinsInputOutput(_shopDataFileName);
-            ShopAndSkinsData loadedShopData = new ShopAndSkinsData();
-            loadedShopData = _inputOutputManager.LoadData();
-            if (loadedShopData == null) throw new NullReferenceException(nameof(loadedShopData));
-            _shopData = loadedShopData;
-
-            _needs = new CreatureNeeds();
-            _needsInputOutputManager = new GameDataInputOutput(_needsDataFileName);
-            GameData loadedGameData = new GameData(_needs);
-            loadedGameData = _needsInputOutputManager.LoadData();
-            if (loadedGameData == null) throw new NullReferenceException(nameof(loadedGameData));
-            _needs.SetCreatureNeedsValues(loadedGameData.creatureNeeds);
-
-            _levelGeneration.OnInitialize(_distanceX, _distanceY, _startPosition.position, _ui);
+            _shopDataFile = _shopDataFileName;
+            _needsDataFile = _needsDataFileName;
+            base.OnInitialize(gameOverAction);
+            _levelGeneration.OnInitialize(_distanceX, _distanceY, _startPosition.position, _ui, this);
             _ui.OnInitialize(this);
             _player.OnInitialize(_distanceX, _distanceY, _startPosition.position, _ui);
-            _player.PlayerNotOnStairHandler += GameOver;
-        }
-
-        private void SaveData()
-        {
-            _shopData.Coins += _earnedCoins;
-            _inputOutputManager.SaveData(_shopData);
-            _needs.happiness += 20f;
-            _needsInputOutputManager.SaveData(_needs, false);
+            _player.PlayerNotOnStairHandler += EndGame;
         }
 
         private IEnumerator StairTimer()
         {
             yield return null;
-            GameOver();
+            EndGame();
         }
 
-        private void GameOver()
+        private void EndGame()
         {
             Debug.Log("Игра окончена, лошок!");
             GameOverHandler?.Invoke();
-            SaveData();
+            SaveData(_earnedCoins);
+            GameOver();
+        }
+
+        protected override void GameOver()
+        {
+
+            base.GameOver();
         }
     }
 }

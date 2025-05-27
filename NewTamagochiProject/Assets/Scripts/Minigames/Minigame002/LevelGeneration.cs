@@ -10,6 +10,7 @@ namespace minigame002
         [Header("Coins settings")]
         [SerializeField] private GameObject _coin;
 
+        private Minigame002 _minigame;
         private MinigameUI _ui;
 
         private Vector3 _startPosition;
@@ -20,7 +21,7 @@ namespace minigame002
         private CustomObjectPool _coinsPool;
         private GameObject _currentStair;
 
-        public void OnInitialize(float distanceX, float distanceY, Vector3 startPosition, MinigameUI ui)
+        public void OnInitialize(float distanceX, float distanceY, Vector3 startPosition, MinigameUI ui, Minigame002 minigame)
         {
             _ui = ui;
             _ui.Jump += StairsGenerator;
@@ -28,7 +29,10 @@ namespace minigame002
             _distanceX = distanceX;
             _distanceY = distanceY;
             _startPosition = startPosition;
-            _stairsPool = new CustomObjectPool(_stair, _maxStairsRendered);
+            if (_stairsPool == null)
+                _stairsPool = new CustomObjectPool(_stair, _maxStairsRendered);
+            _minigame = minigame;
+            _minigame.GameOverHandler += EndGenerating;
             StartGenerating();
         }
 
@@ -37,6 +41,13 @@ namespace minigame002
             _currentStair = _stairsPool.Get();
             _currentStair.transform.position = _startPosition;
             for (int i = 0; i < _maxStairsRendered; i++) StairSpawn();
+        }
+
+        private void EndGenerating()
+        {
+            _stairsPool.ReleaseAll();
+            _ui.Jump -= StairsGenerator;
+            _ui.Rotate -= StairsGenerator;
         }
 
         private void StairsGenerator()

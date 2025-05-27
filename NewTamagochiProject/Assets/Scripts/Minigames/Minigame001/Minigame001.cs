@@ -28,28 +28,13 @@ namespace minigame001
 
         private RectTransform _squareRectTransform;
 
-        private ShopAndSkinsData _shopData;
-        private ShopAndSkinsInputOutput _shopInputOutputManager;
-        private CreatureNeeds _needs;
-        private GameDataInputOutput _needsInputOutputManager;
-
-        public override void OnInitialize()
+        public override void OnInitialize(Action gameOverAction)
         {
+            _shopDataFile = _shopDataFileName;
+            _needsDataFile = _needsDataFileName;
+            base.OnInitialize(gameOverAction);
             _squareRectTransform = _square.GetComponent<RectTransform>();
             _pool = new CustomObjectPool(_square, _numberOfSquares * _numberOfSquares);
-            _shopData = new ShopAndSkinsData();
-            _shopInputOutputManager = new ShopAndSkinsInputOutput(_shopDataFileName);
-            ShopAndSkinsData loadedShopData = new ShopAndSkinsData();
-            loadedShopData = _shopInputOutputManager.LoadData();
-            if (loadedShopData == null) throw new NullReferenceException(nameof(loadedShopData));
-            _shopData = loadedShopData;
-
-            _needs = new CreatureNeeds();
-            _needsInputOutputManager = new GameDataInputOutput(_needsDataFileName);
-            GameData loadedGameData = new GameData(_needs);
-            loadedGameData = _needsInputOutputManager.LoadData();
-            if (loadedGameData == null) throw new NullReferenceException(nameof(loadedGameData));
-            _needs.SetCreatureNeedsValues(loadedGameData.creatureNeeds);
             _gameCoroutine = StartCoroutine(StartGame());
             Debug.Log("Игра началась");
         }
@@ -70,7 +55,7 @@ namespace minigame001
             yield return new WaitForSeconds(_secondsForLevel);
             _pool.ReleaseAll();
             Debug.LogWarning("Конец игры!");
-            SaveData();
+            SaveData(_earnedCoins);
         }
 
         private void CorrectButton()
@@ -86,7 +71,8 @@ namespace minigame001
             StopCoroutine(_gameCoroutine);
             _pool.ReleaseAll();
             Debug.LogWarning("Game Over! Вы выбрали неправильный цвет");
-            SaveData();
+            SaveData(_earnedCoins);
+            GameOver();
         }
 
         private void SetUpLevel(int lvlSquareNumber, ColorPallete[] currentPallete)
@@ -126,14 +112,6 @@ namespace minigame001
                 currentPosX += width;
                 currentPosY = topLeftPosY;
             }
-        }
-
-        private void SaveData()
-        {
-            _shopData.Coins += _earnedCoins;
-            _shopInputOutputManager.SaveData(_shopData);
-            _needs.happiness += 20f;
-            _needsInputOutputManager.SaveData(_needs, false);
         }
     }
 }

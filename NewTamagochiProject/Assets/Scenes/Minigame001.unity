@@ -376,7 +376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008070972464376099, guid: a230577ad4042c4489fa405b5885aa9a, type: 3}
       propertyPath: m_Name
-      value: minigames start screen
+      value: minigame start screen
       objectReference: {fileID: 0}
     - target: {fileID: 4008070972464376099, guid: a230577ad4042c4489fa405b5885aa9a, type: 3}
       propertyPath: m_IsActive
@@ -386,6 +386,10 @@ PrefabInstance:
       propertyPath: _minigame
       value: 
       objectReference: {fileID: 270626476}
+    - target: {fileID: 7549562466530610860, guid: a230577ad4042c4489fa405b5885aa9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7891113808462208095, guid: a230577ad4042c4489fa405b5885aa9a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

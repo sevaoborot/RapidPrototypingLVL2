@@ -16,6 +16,8 @@ namespace minigame002
         public void OnInitialize(Minigame002 _setup)
         {
             _setup.GameOverHandler += BlockButtons;
+            _jumpButton.enabled = true;
+            _rotateButton.enabled = true;
         }
 
         public void OnJumpButtonPressed() => Jump?.Invoke();
