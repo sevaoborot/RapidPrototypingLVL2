@@ -53,7 +53,12 @@ namespace minigame002
             _rb.MovePosition(newPosition);
             yield return new WaitForFixedUpdate();
             Debug.Log(_isOnStair);
-            if (!_isOnStair) PlayerNotOnStairHandler?.Invoke();
+            if (!_isOnStair)
+            {
+                _buttons.Jump -= OnJump;
+                _buttons.Rotate -= OnRotate;
+                PlayerNotOnStairHandler?.Invoke();
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision) => _isOnStair = true;
