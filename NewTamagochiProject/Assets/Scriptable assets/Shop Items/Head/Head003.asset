@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db5577226b420cb4bb62a3f2c231cc06, type: 3}
-  m_Name: Color001
+  m_Script: {fileID: 11500000, guid: 245f74916f05951449de6d83ced43958, type: 3}
+  m_Name: Head003
   m_EditorClassIdentifier: 
-  <itemIcon>k__BackingField: {fileID: 495391231, guid: f718b29c2317a814c832b04c9a386c1f, type: 3}
+  <itemIcon>k__BackingField: {fileID: -1599806339, guid: 8568a03a8a8aa814a990bd2ec15be480, type: 3}
   <price>k__BackingField: 50
-  <bodyColor>k__BackingField: {r: 0.52201253, g: 0.2557419, b: 0.113266796, a: 1}
-  <bodyColorType>k__BackingField: 0
+  <item>k__BackingField: {fileID: -1833176381, guid: 3c0be7bbff310a14db3f0d8be8713662, type: 3}
+  <headType>k__BackingField: 2

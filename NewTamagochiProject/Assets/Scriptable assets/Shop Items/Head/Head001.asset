@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245f74916f05951449de6d83ced43958, type: 3}
   m_Name: Head001
   m_EditorClassIdentifier: 
-  <item>k__BackingField: {fileID: 0}
-  <itemIcon>k__BackingField: {fileID: 0}
+  <itemIcon>k__BackingField: {fileID: 1085478031, guid: 8568a03a8a8aa814a990bd2ec15be480, type: 3}
   <price>k__BackingField: 50
+  <item>k__BackingField: {fileID: -1794733799, guid: 3c0be7bbff310a14db3f0d8be8713662, type: 3}
   <headType>k__BackingField: 0

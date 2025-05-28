@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _content: {fileID: 11400000, guid: b05b881f934bc8745809c8852c4e624e, type: 2}
-  _creaturesHead: {fileID: 0}
+  _creaturesHead: {fileID: 1332085118}
   _creaturesColor: {fileID: 6308970}
 --- !u!70 &110543611
 CapsuleCollider2D:
@@ -3567,7 +3567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1332085117
 Transform:
   m_ObjectHideFlags: 0
@@ -3578,8 +3578,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.03, y: 1.94, z: 0}
-  m_LocalScale: {x: 2.0233, y: 2.0233, z: 2.0233}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.12, y: 1.12, z: 1.12}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 110543612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3624,7 +3624,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.9811321, g: 0.89320046, b: 0.89320046, a: 1}
   m_FlipX: 0
   m_FlipY: 0

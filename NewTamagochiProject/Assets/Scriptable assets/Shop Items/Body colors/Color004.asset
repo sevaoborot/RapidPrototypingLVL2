@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db5577226b420cb4bb62a3f2c231cc06, type: 3}
   m_Name: Color004
   m_EditorClassIdentifier: 
-  <itemIcon>k__BackingField: {fileID: 0}
+  <itemIcon>k__BackingField: {fileID: -898971888, guid: f718b29c2317a814c832b04c9a386c1f, type: 3}
   <price>k__BackingField: 0
   <bodyColor>k__BackingField: {r: 0.4950781, g: 0, b: 1, a: 0}
   <bodyColorType>k__BackingField: 3

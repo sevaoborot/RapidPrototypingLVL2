@@ -9,7 +9,7 @@ public class CreatureAppearance : MonoBehaviour
 
     public void OnInitialize(ShopAndSkinsData shopAndSkinsData)
     {
-        //тут из хедайтема передаем нужные значения
+        _creaturesHead.sprite = _content.HeadItems.FirstOrDefault(item => item.headType == shopAndSkinsData.SelectedHeadItem).item;
         _creaturesColor.color = _content.BodyColors.FirstOrDefault(item => item.bodyColorType == shopAndSkinsData.SelectedBodycolorItem).bodyColor;
     }
 }
