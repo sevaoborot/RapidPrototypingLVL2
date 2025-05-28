@@ -21,9 +21,10 @@ namespace minigame003
         [SerializeField] private string _needsDataFileName;
 
         private int _numberOfLevels = 0;
-        private int _numberOfDiffChange = 0;
         private int _earnedCoins = 0;
         private int _coloredByPlayerSquares = 0;
+
+        private int _startNumberOfSquares;
 
         private CustomObjectPool _pool;
         private Coroutine _gameCoroutine;
@@ -32,11 +33,13 @@ namespace minigame003
 
         public override void OnInitialize(Action gameOverAction)
         {
+            _startNumberOfSquares = _numberOfSquares;
             _shopDataFile = _shopDataFileName;
             _needsDataFile = _needsDataFileName;
             base.OnInitialize(gameOverAction);
             _squareRectTransform = _square.GetComponent<RectTransform>();
-            _pool = new CustomObjectPool(_square, _numberOfSquares * _numberOfSquares);
+            if (_pool == null)
+                _pool = new CustomObjectPool(_square, _numberOfSquares * _numberOfSquares);
             _gameCoroutine = StartCoroutine(StartGame());
         }
 
@@ -53,12 +56,12 @@ namespace minigame003
             yield return new WaitForSeconds(_secondsForLevel);
             _pool.ReleaseAll();
             Debug.LogWarning("Конец игры!");
-            SaveData(_earnedCoins);
             GameOver();
         }
 
         private void SetUpLevel()
         {
+            Debug.Log(_numberOfSquares *  _numberOfLevels);
             _pool.ReleaseAll(
                         (GameObject obj) => obj.GetComponentInChildren<Button>().onClick.RemoveAllListeners());
             int selectedSquares = UnityEngine.Random.Range(1, _numberOfSquares * _numberOfSquares - 1);
@@ -129,10 +132,19 @@ namespace minigame003
             Debug.Log(_coloredByPlayerSquares);
             if (_coloredByPlayerSquares == 0 || _coloredByPlayerSquares == _numberOfSquares * _numberOfSquares)
             {
-                StopCoroutine(_gameCoroutine);
+                if (_gameCoroutine != null) StopCoroutine(_gameCoroutine);
                 _gameCoroutine = StartCoroutine(StartGame());
                 _earnedCoins++;
             }
+        }
+
+        protected override void GameOver()
+        {
+            SaveData(_earnedCoins);
+            _numberOfSquares = _startNumberOfSquares;
+            _numberOfLevels = 0;
+            _earnedCoins = 0;
+            base.GameOver();
         }
     }
 }

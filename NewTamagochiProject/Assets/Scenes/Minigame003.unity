@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _square: {fileID: 826814886843330033, guid: 9d2b9369ff3d825409424268063d5f2c, type: 3}
-  _numberOfSquares: 4
+  _numberOfSquares: 2
   _secondsForLevel: 5
   _shopDataFileName: shopAndSkins.json
   _needsDataFileName: petData.json
