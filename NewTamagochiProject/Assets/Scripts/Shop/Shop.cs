@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
     [SerializeField] private ShopCategoryButton _bodyColorCategoryButton;
     [SerializeField] private ShopCategoryButton _headCategoryButton;
     [SerializeField] private ShopItemsList _itemsList;
+    [SerializeField] private TextMeshProUGUI _coinsText;
     [Space]
     [SerializeField] private ShopContent _shopContent;
 
@@ -14,9 +16,12 @@ public class Shop : MonoBehaviour
     private SelectedSkinChecker _selectedSkinChecker;
     private SkinSelector _skinSelector;
     private SkinUnlocker _skinUnlocker;
+    private ShopAndSkinsData _data;
 
-    public void OnInitialize(OpenedSkinsChecker openedSkinsChecker, SelectedSkinChecker selectedSkinChecker, SkinSelector skinSelector, SkinUnlocker skinUnlocker)
+    public void OnInitialize(OpenedSkinsChecker openedSkinsChecker, SelectedSkinChecker selectedSkinChecker, SkinSelector skinSelector, SkinUnlocker skinUnlocker, ShopAndSkinsData data)
     {
+        _data = data;
+        _coinsText.text = _data.Coins.ToString();
         _bodyColorCategoryButton.OnInitialize();
         _headCategoryButton.OnInitialize();
         _bodyColorCategoryButton.Click += OnBodyColorCategoryClick;
@@ -89,6 +94,7 @@ public class Shop : MonoBehaviour
             visitorItem.Accept(_skinUnlocker);
             visitorItem.Accept(_openedSkinChecker);
             if (_openedSkinChecker.IsOpened) itemView.Unlock();
+            _coinsText.text = _data.Coins.ToString();
         }
     }
 }

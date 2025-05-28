@@ -26,7 +26,7 @@ public class InitializeShop : MonoBehaviour
         _selectedSkinChecker = new SelectedSkinChecker(_data);  
         _skinSelector = new SkinSelector(_data);
         _skinUnlocker = new SkinUnlocker(_data);
-        _shop.OnInitialize(_openedSkinsChecker, _selectedSkinChecker, _skinSelector, _skinUnlocker);
+        _shop.OnInitialize(_openedSkinsChecker, _selectedSkinChecker, _skinSelector, _skinUnlocker, _data);
     }
 
     private void OnApplicationPause(bool pause)
