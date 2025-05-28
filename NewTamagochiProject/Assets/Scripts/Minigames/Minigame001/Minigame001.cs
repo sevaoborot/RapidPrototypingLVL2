@@ -22,6 +22,8 @@ namespace minigame001
         private int _numberOfLevels = 0;
         private int _numberOfDiffChange = 0;
         private int _earnedCoins = 0;
+        private int _startNumberOfSquares;
+        private float _startSecondsForLevel;
 
         private CustomObjectPool _pool;
         private Coroutine _gameCoroutine;
@@ -30,13 +32,14 @@ namespace minigame001
 
         public override void OnInitialize(Action gameOverAction)
         {
+            _startNumberOfSquares = _numberOfSquares;
+            _startSecondsForLevel = _secondsForLevel;
             _shopDataFile = _shopDataFileName;
             _needsDataFile = _needsDataFileName;
             base.OnInitialize(gameOverAction);
             _squareRectTransform = _square.GetComponent<RectTransform>();
-            _pool = new CustomObjectPool(_square, _numberOfSquares * _numberOfSquares);
+            if (_pool == null) _pool = new CustomObjectPool(_square, _numberOfSquares * _numberOfSquares);
             _gameCoroutine = StartCoroutine(StartGame());
-            Debug.Log("Игра началась");
         }
 
         private IEnumerator StartGame()
@@ -54,8 +57,7 @@ namespace minigame001
             else _numberOfLevels++;
             yield return new WaitForSeconds(_secondsForLevel);
             _pool.ReleaseAll();
-            Debug.LogWarning("Конец игры!");
-            SaveData(_earnedCoins);
+            GameOver();
         }
 
         private void CorrectButton()
@@ -70,8 +72,6 @@ namespace minigame001
         {
             StopCoroutine(_gameCoroutine);
             _pool.ReleaseAll();
-            Debug.LogWarning("Game Over! Вы выбрали неправильный цвет");
-            SaveData(_earnedCoins);
             GameOver();
         }
 
@@ -93,7 +93,6 @@ namespace minigame001
                 for (int j = 0; j < _numberOfSquares; j++)
                 {
                     GameObject gameSquare = _pool.Get();
-                    //gameSquare.name = $"{currentSquare}";
                     gameSquare.transform.SetParent(transform, false);
                     gameSquare.GetComponent<RectTransform>().anchoredPosition = new Vector2(currentPosX, currentPosY);
                     if (currentSquare == selectedSquare)
@@ -112,6 +111,17 @@ namespace minigame001
                 currentPosX += width;
                 currentPosY = topLeftPosY;
             }
+        }
+
+        protected override void GameOver()
+        {
+            SaveData(_earnedCoins);
+            _numberOfSquares = _startNumberOfSquares;
+            _secondsForLevel = _startSecondsForLevel;
+            _numberOfLevels = 0;
+            _numberOfDiffChange = 0;
+            _earnedCoins = 0;
+            base.GameOver();
         }
     }
 }

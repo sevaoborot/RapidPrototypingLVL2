@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public abstract class Minigame: MonoBehaviour
@@ -10,9 +10,13 @@ public abstract class Minigame: MonoBehaviour
     private ShopAndSkinsInputOutput _inputOutputManager;
     private CreatureNeeds _needs;
     private GameDataInputOutput _needsInputOutputManager;
+    //private bool _isInitialized = false;
 
     public virtual void OnInitialize(Action gameOverAction)
     {
+        //if (_isInitialized) return;
+        //Debug.Log("тест");
+        //_isInitialized = true;
         _shopData = new ShopAndSkinsData();
         _inputOutputManager = new ShopAndSkinsInputOutput(_shopDataFile);
         ShopAndSkinsData loadedShopData = new ShopAndSkinsData();
