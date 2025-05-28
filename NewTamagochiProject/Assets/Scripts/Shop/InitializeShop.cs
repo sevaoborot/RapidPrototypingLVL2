@@ -38,4 +38,9 @@ public class InitializeShop : MonoBehaviour
     {
         _inputOutputManager.SaveData(_data);
     }
+
+    public void SaveData()
+    {
+        _inputOutputManager.SaveData(_data);
+    }
 }

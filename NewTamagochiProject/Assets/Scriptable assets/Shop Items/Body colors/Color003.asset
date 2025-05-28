@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <itemIcon>k__BackingField: {fileID: 21300000, guid: 7d4128508cd68e846ba19faa7af78b3b, type: 3}
   <price>k__BackingField: 50
-  <bodyColor>k__BackingField: {r: 1, g: 0.11518325, b: 0, a: 1}
+  <bodyColor>k__BackingField: {r: 0, g: 1, b: 0.10499716, a: 1}
   <bodyColorType>k__BackingField: 2
